@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import "./Signup.css";
 
 export default class Signup extends Component {
   render() {
     return (
-      <Router>
+    //   <Router>
         <div class="container-fluid">
           <div class="row no-gutter">
             <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
@@ -69,17 +69,17 @@ export default class Signup extends Component {
                         </div>
 
                         <button
-                          class="btn btn-lg btn-primary btn-block text-uppercase"
+                          class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
                         >
-                          Register
+                          Sign Up
                         </button>
-                        <Link
+                        {/* <Link
                           class="d-block text-center mt-2 small"
                           to="/login"
                         >
                           Login In
-                        </Link>
+                        </Link> */}
                       </form>
                     </div>
                   </div>
@@ -88,7 +88,7 @@ export default class Signup extends Component {
             </div>
           </div>
         </div>
-      </Router>
+    //   </Router>
     );
   }
 }
