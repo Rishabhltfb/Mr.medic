@@ -21,13 +21,11 @@ class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   // bool _isAuthenticated = false;
 
-  @override
-  void initState() {
-    _model.login();
-    // _model.getUsers();
-
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   _model.login();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,6 @@ class _MyAppState extends State<MyApp> {
           '/': (BuildContext context) => SplashPage(_model),
           // '/auth': (BuildContext context) => AuthPage(_model),
           '/home': (BuildContext context) => HomeScreen(),
-          // '/profile': (BuildContext context) => Profile_Screen(_model),
           '/error': (BuildContext context) => ErrorScreen(),
         },
       ),

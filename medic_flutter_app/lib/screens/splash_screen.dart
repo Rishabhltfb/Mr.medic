@@ -32,10 +32,29 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         child: Center(
-          child: Container(
-            height: getDeviceHeight(context) * 0.30,
-            width: getDeviceWidth(context) * 0.30,
-            child: Image.asset('assets/icon.png'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                height: getDeviceHeight(context) * 0.50,
+                width: getDeviceWidth(context) * 0.50,
+                child: Image.asset('assets/doctor.png'),
+              ),
+              SizedBox(height: getDeviceHeight(context) * 0.01),
+              Text(
+                'Mr. medic',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getDeviceHeight(context) * 0.05),
+              ),
+              SizedBox(height: getDeviceHeight(context) * 0.01),
+              Text(
+                'We are here to help',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getDeviceHeight(context) * 0.03),
+              )
+            ],
           ),
         ),
       ),
