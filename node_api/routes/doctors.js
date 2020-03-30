@@ -20,7 +20,6 @@ router.post('/register', (req, res) => {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
     Doctor.findOne({ email: req.body.email }).then(doctor => {
         if (doctor) {
             errors.email = 'Email already exists';
