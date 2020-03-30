@@ -1,10 +1,23 @@
 # medic_flutter_app
 
-A new Flutter project.
+A new Flutter project named Dr. medic which consists of features such as Qr Code Scanning, NLP and OCR in order to create a medical service that can be proved beneficial for patients and doctors to keep track of medical and treatment history which are quickly accessible, reliable and easy to maintain..
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+- clone this repository.
+
+```
+git clone 'repository_url'
+```
+
+- download flutter from flutter : https://flutter.dev/docs/get-started/install
+- install flutter and dart plugins for your text editor.
+- open project in your preferred text editor and download all dependencies from pubspec.yaml (automatically downloaded during first run)
+- run project using command
+
+```
+flutter run
+```
 
 A few resources to get you started if this is your first Flutter project:
 
