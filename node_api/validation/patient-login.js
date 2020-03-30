@@ -1,7 +1,7 @@
 const validator = require("validator");
 var _ = require("lodash");
 
-module.exports = function validatePatientLogin(data) {
+module.exports = function validateLoginInput(data) {
   let errors = {};
 
   if (_.isEmpty(data.email)) {

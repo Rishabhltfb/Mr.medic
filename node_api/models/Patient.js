@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema({
-  name: {
+    name: {
         type: String,
         required: true
     },
@@ -35,7 +35,15 @@ const PatientSchema = new Schema({
     gender: {
         type: String,
         required: true
-    }
+    },
+    reports: [
+        {
+            report: {
+                type: Schema.Types.ObjectId,
+                ref: 'reports'
+            }
+        }
+    ]
 });
 
 module.exports = Patient = mongoose.model("patients", PatientSchema);

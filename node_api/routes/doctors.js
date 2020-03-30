@@ -14,7 +14,6 @@ router.get('/test', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    console.log('1');
     const { errors, isValid } = validatedoctorRegister(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
