@@ -9,6 +9,8 @@ const Doctor = require('../models/Doctor');
 const validatedoctorRegister = require('../validation/doctor-register');
 const validateLoginInput = require('../validation/doctor-login');
 
+//require("../config/passport2")(passport);
+
 router.get('/test', (req, res) => {
     res.json({ msg: 'doctor route work' })
 });
@@ -100,5 +102,13 @@ router.post('/login', (req, res) => {
       });
     });
   });
+
+router.get('/:id', (req, res) => {
+  res.json({
+    
+  });
+});
+
+
 
 module.exports = router;

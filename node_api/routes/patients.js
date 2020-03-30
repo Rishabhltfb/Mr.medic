@@ -9,6 +9,8 @@ const Patient = require('../models/Patient');
 const validatePatientRegister = require('../validation/patient-register');
 const validateLoginInput = require('../validation/patient-login');
 
+//require("../config/passport")(passport);
+
 router.get('/test', (req, res) => {
     res.json({ msg: 'Patient route work' })
 });
@@ -97,5 +99,41 @@ router.post('/login', (req, res) => {
       });
     });
   });
+
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({
+    patient: req.user
+  });
+});
+
+router.delete('/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Patient.findOneAndRemove({ _id: req.user.id }).then(() => {
+      res.json({ success: true })
+        .catch((error) => {
+          assert.isNotOk(error, 'Promise error');
+          done();
+        });
+    });
+  }
+);
+
+router.get('/all', (req, res) => {
+  Patient.find()
+    .exec()
+    .then(patients => {
+      const response = {
+        patients: patients
+      };
+      res.status(200).json(response);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 module.exports = router;
