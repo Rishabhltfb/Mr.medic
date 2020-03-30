@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./views/NavBar/NavBar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Footer from "./views/Footer/Footer";
-import Login from "./components/Login/Login";
-import Signup from './components/Signup/Signup'
+import Login from "./views/Login/Login";
+import Signup from './views/Signup/Signup'
 import "./App.css";
 
 function App() {

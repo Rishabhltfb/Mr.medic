@@ -1,20 +1,9 @@
-import React, { Component } from "react";
-// import { BrowserRouter as Router, Link } from "react-router-dom";
+import React, { Component } from 'react'
 
-import "./Signup.css";
-
-export default class Signup extends Component {
-  render() {
-    return (
-    //   <Router>
-        <div class="container-fluid">
-          <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-            <div class="col-md-8 col-lg-6">
-              <div class="login d-flex align-items-center py-5">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-9 col-lg-8 mx-auto">
+export default class DoctorSignup extends Component {
+    render() {
+        return (
+            <div class="col-md-9 col-lg-8 mx-auto">
                       <h3 class="login-heading mb-4" style={{ color: "white" }}>
                         Welcome back!
                       </h3>
@@ -82,13 +71,6 @@ export default class Signup extends Component {
                         </Link> */}
                       </form>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    //   </Router>
-    );
-  }
+        )
+    }
 }

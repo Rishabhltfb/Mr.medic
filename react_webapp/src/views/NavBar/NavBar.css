@@ -1,10 +1,12 @@
 .nav-item:hover{
     color: black;
-    background-color: rgba(71, 177, 238, 0.4);
+    background-color: #007bff;
+    border-radius: 50px;
 
 }
 .navbar-brand:hover{
-    background-color: rgba(71, 177, 238, 0.4);
+    background-color: #007bff;
+    border-radius: 50px;
 }
 
 #mainNav .navbar-brand {
