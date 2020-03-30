@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PatientSchema = new Schema({
-    name: {
+  name: {
         type: String,
         required: true
     },
@@ -21,7 +21,7 @@ const PatientSchema = new Schema({
         type: String,
         default: 'default avatar path here'
     },
-    Age: {
+    age: {
         type: Number,
         required: true
     },
@@ -30,8 +30,7 @@ const PatientSchema = new Schema({
         required: true
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     gender: {
         type: String,
@@ -39,5 +38,4 @@ const PatientSchema = new Schema({
     }
 });
 
-module.exports = Patient = mongoose.model('patients', PatientSchema);
-
+module.exports = Patient = mongoose.model("patients", PatientSchema);
