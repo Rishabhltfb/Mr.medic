@@ -10,6 +10,13 @@ const ReportSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "doctors"
     },
+    heading: {
+        type: String,
+        default: "Current Report"
+    },
+    name: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
@@ -57,4 +64,6 @@ const ReportSchema = new Schema({
             }
         }
     ]
-})
+});
+
+module.exports = Report = mongoose.model('reports', ReportSchema);

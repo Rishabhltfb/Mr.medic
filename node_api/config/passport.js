@@ -17,15 +17,7 @@ module.exports = passport => {
           if (patient) {
             return done(null, patient);
           }
-          else {
-            Doctor.findById(jwt_payload.id)
-              .then(doctor => {
-                if(doctor) {
-                  return done(null, doctor);
-                }
-              })
-              return done(null, false) 
-          }
+          return done(null, false);
         })
         .catch(err => console.log(err));
     })
