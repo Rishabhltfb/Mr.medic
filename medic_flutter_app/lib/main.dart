@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medic_flutter_app/screens/auth_screen.dart';
+import 'package:medic_flutter_app/screens/patient_doctor.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/rendering.dart';
 
@@ -33,13 +35,14 @@ class _MyAppState extends State<MyApp> {
       model: _model,
       child: MaterialApp(
         theme: ThemeData(
-          primaryColor: Color(0xff00ACEE),
+          primaryColor: Color(0xff0079f5),
           accentColor: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (BuildContext context) => SplashPage(_model),
-          // '/auth': (BuildContext context) => AuthPage(_model),
+          '/choose': (BuildContext context) => ChooseScreen(_model),
+          '/auth': (BuildContext context) => AuthScreen(_model),
           '/home': (BuildContext context) => HomeScreen(),
           '/error': (BuildContext context) => ErrorScreen(),
         },

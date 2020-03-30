@@ -1,1 +1,1 @@
-enum AuthMode { Signup, Login }
+enum AuthMode { DoctorSignup, DoctorLogin, PatientSignup, PatientLogin }

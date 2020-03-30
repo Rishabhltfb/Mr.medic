@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, "/home");
+      Navigator.pushReplacementNamed(context, "/choose", arguments: model);
     });
   }
 
