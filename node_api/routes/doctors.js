@@ -103,12 +103,21 @@ router.post('/login', (req, res) => {
     });
   });
 
-router.get('/:id', (req, res) => {
-  res.json({
-    
-  });
+router.get('/find/:id', (req, res) => {
+  Doctor.findById(req.params.id).then(doctor => res.json(doctor))
+          .catch(error => res.status(404).json({ noDoctorFound: 'no doctor found with given ID' }));
 });
 
+router.get('/city/:city', (req, res) => {
+  Doctor.find({ city: req.params.city }).then(doctors => {
+    res.json(doctors);
+  }).catch(error => res.status(400).json({noDoctorFound: 'no doctor found in that city'}));
+});
 
+router.get('/all', (req, res) => {
+  Doctor.find().then(doctors => {
+    res.json(doctors);
+  }).catch(error => res.status(404).json({ noDoctorFound: 'no doctor found with given ID' }));
+});
 
 module.exports = router;

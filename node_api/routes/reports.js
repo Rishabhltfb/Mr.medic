@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
-const Report = require('../models/R eport');
+const Report = require('../models/Report');
 const validateReport = require('../validation/report-validation');
 
 router.get('/test', (req, res) => {
