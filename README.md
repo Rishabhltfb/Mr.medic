@@ -3,3 +3,5 @@
   
 To set-up checkout readme files of individual sub-projects: 
   * medic_flutter_app
+  * node_api
+  * react_webapp
