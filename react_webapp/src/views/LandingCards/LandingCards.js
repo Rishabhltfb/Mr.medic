@@ -1,5 +1,7 @@
 import React from "react";
-
+import './LandingCards.css'
+import { FaCheck } from "react-icons/fa";
+import { IconContext } from "react-icons";
 export default function LandingCards() {
   return (
     <section className="pricing py-5">
@@ -7,67 +9,33 @@ export default function LandingCards() {
         <div className="row">
           <div className="col-lg-4">
             <div className="card mb-5 mb-lg-0">
-              <div className="card-body">
-                <h5 className="card-title text-muted text-uppercase text-center">
-                  Free
+              <div className="card-body ">
+                <h5 className="card-title text-muted text-uppercase text-center ">
+                  We Prepare
                 </h5>
-                <h6 className="card-price text-center">
-                  $0<span className="period">/month</span>
-                </h6>
                 <hr />
                 <ul className="fa-ul">
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Single User
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Unique health record for each patient.</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    5GB Storage
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Access of data anytime & anywhere. </strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Unlimited Public Projects
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Community Access
-                  </li>
-                  <li className="text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-times"></i>
-                    </span>
-                    Unlimited Private Projects
-                  </li>
-                  <li className="text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-times"></i>
-                    </span>
-                    Dedicated Phone Support
-                  </li>
-                  <li className="text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-times"></i>
-                    </span>
-                    Free Subdomain
-                  </li>
-                  <li className="text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-times"></i>
-                    </span>
-                    Monthly Status Reports
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Data standardization and unification.</strong>
                   </li>
                 </ul>
-                <a href="#" className="btn btn-block btn-primary text-uppercase">
-                  Button
-                </a>
               </div>
             </div>
           </div>
@@ -75,131 +43,70 @@ export default function LandingCards() {
             <div className="card mb-5 mb-lg-0">
               <div className="card-body">
                 <h5 className="card-title text-muted text-uppercase text-center">
-                  Plus
+                  Outstanding Features
                 </h5>
-                <h6 className="card-price text-center">
-                  $9<span className="period">/month</span>
-                </h6>
                 <hr />
                 <ul className="fa-ul">
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    <strong>5 Users</strong>
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Register Patient</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    50GB Storage
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> See Doctor's Profile</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Unlimited Public Projects
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Web Portal</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Community Access
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Unlimited Private Projects
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Dedicated Phone Support
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Free Subdomain
-                  </li>
-                  <li className="text-muted">
-                    <span className="fa-li">
-                      <i className="fas fa-times"></i>
-                    </span>
-                    Monthly Status Reports
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Mobile App</strong>
                   </li>
                 </ul>
-                <a href="#" className="btn btn-block btn-primary text-uppercase">
-                  Button
-                </a>
               </div>
             </div>
           </div>
           <div className="col-lg-4">
-            <div className="card">
+            <div className="card mb-5 mb-lg-0">
               <div className="card-body">
                 <h5 className="card-title text-muted text-uppercase text-center">
-                  Pro
+                  Perks
                 </h5>
-                <h6 className="card-price text-center">
-                  $49<span className="period">/month</span>
-                </h6>
                 <hr />
                 <ul className="fa-ul">
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    <strong>Unlimited Users</strong>
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Unique QR Code</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    150GB Storage
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Security of Data</strong>
                   </li>
+                  <br />
                   <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Unlimited Public Projects
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Community Access
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Unlimited Private Projects
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Dedicated Phone Support
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    <strong>Unlimited</strong> Free Subdomains
-                  </li>
-                  <li>
-                    <span className="fa-li">
-                      <i className="fas fa-check"></i>
-                    </span>
-                    Monthly Status Reports
+                    <IconContext.Provider value={{ className: "faCheck" }}>
+                      <FaCheck />
+                    </IconContext.Provider>
+                    <strong> Appointment time & management</strong>
                   </li>
                 </ul>
-                <a href="#" className="btn btn-block btn-primary text-uppercase">
-                  Button
-                </a>
               </div>
             </div>
           </div>
