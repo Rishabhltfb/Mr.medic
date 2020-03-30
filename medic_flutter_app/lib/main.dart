@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
           '/': (BuildContext context) => SplashPage(_model),
           '/choose': (BuildContext context) => ChooseScreen(_model),
           '/auth': (BuildContext context) => AuthScreen(_model),
-          '/home': (BuildContext context) => HomeScreen(),
+          '/home': (BuildContext context) => HomeScreen(_model),
           '/error': (BuildContext context) => ErrorScreen(),
         },
       ),
