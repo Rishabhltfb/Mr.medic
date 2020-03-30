@@ -19,6 +19,7 @@ mongoose
   .then(() => console.log("MongoDB Connected Succesfully"))
   .catch(err => console.log(err));
 
+app.use('/uploads', express.static('uploads'));
 const patient = require('./routes/patients');
 app.use('/api/patients',patient);
 const doctor = require('./routes/doctors');
