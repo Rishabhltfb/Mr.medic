@@ -1,45 +1,13 @@
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:medic_flutter_app/helpers/dimensions.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
-
-class QrScan extends StatefulWidget {
+class QrCode extends StatefulWidget {
   @override
-  _QrScanState createState() => _QrScanState();
+  _QrCodeState createState() => _QrCodeState();
 }
 
-class _QrScanState extends State<QrScan> {
-  String result = "Hey there !";
-
-  Future _scanQR() async {
-    try {
-      String qrResult = await BarcodeScanner.scan();
-      setState(() {
-        result = qrResult;
-      });
-    } on PlatformException catch (ex) {
-      if (ex.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          result = "Camera permission was denied";
-        });
-      } else {
-        setState(() {
-          result = "Unknown Error $ex";
-        });
-      }
-    } on FormatException {
-      setState(() {
-        result = "You pressed the back button before scanning anything";
-      });
-    } catch (ex) {
-      setState(() {
-        result = "Unknown Error $ex";
-      });
-    }
-  }
-
+class _QrCodeState extends State<QrCode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,16 +23,11 @@ class _QrScanState extends State<QrScan> {
               version: QrVersions.auto,
               size: 200.0,
             ),
-            Text(result),
+            SizedBox(height: getDeviceHeight(context) * 0.1),
+            Text('This is Unique Patient Id'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.camera_alt),
-        label: Text("Scan"),
-        onPressed: _scanQR,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

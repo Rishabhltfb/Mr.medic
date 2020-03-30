@@ -5,7 +5,6 @@ import 'package:scoped_model/scoped_model.dart';
 // import 'dart:collection';
 
 import '../scoped_models/main_scoped_model.dart';
-import 'package:medic_flutter_app/widgets/side_drawer.dart';
 import 'package:medic_flutter_app/helpers/dimensions.dart';
 import '../api/keys.dart';
 
@@ -172,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: FadeInImage.assetNetwork(
-                                  height: getDeviceHeight(context) * 0.05,
+                                  height: getDeviceWidth(context) * 0.085,
                                   fadeInCurve: Curves.easeIn,
                                   placeholder: 'assets/patient.png',
                                   image: '',
@@ -196,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                       onPressed: () => model.isPatient
                           ? Navigator.pushNamed(context, '/qr')
-                          : Navigator.pushNamed(context, '/profile'),
+                          : Navigator.pushNamed(context, '/qrscan'),
                     ),
                   ],
                   title: GestureDetector(
