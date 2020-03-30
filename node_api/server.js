@@ -28,6 +28,7 @@ app.use('/api/reports',report)
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
+// require("./config/passport2")(passport);
 
 app.use((req, res, next) => {
     const error = new Error("Route not found");
