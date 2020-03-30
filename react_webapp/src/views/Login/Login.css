@@ -18,7 +18,7 @@
   /* #a3bded → #6991c7 */
   /* background-image: linear-gradient(to bottom, #48c6ef,#6f86d6); */
   background-color: rgb(49, 45, 45);
-  transform: invert();
+  /* transform: invert(); */
 }
 .bg-image {
   background-image: url("../../assets/img/login.jpg");
