@@ -33,7 +33,8 @@ const DoctorSchema = new Schema({
         type: String,
     },
     specialization: {
-        type: String
+        type: String,
+        required: true
     },
     canTreatFor: [
         {
