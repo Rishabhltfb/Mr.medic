@@ -60,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
                     child: Container(
                       padding: EdgeInsets.all(30),
                       color: Colors.white,
@@ -161,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ? AppBar(
                   backgroundColor: Colors.white,
                   leading: GestureDetector(
-                    onTap: () => _scaffoldKey.currentState.openDrawer(),
+                    onTap: () => Navigator.pushNamed(context, '/profile'),
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 10),
@@ -181,12 +183,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   actions: <Widget>[
                     IconButton(
-                        icon: Icon(
-                          Icons.stars,
-                          color: Theme.of(context).primaryColor,
-                          size: getDeviceHeight(context) * 0.05,
-                        ),
-                        onPressed: null),
+                      icon: model.isPatient
+                          ? Icon(
+                              Icons.stars,
+                              color: Theme.of(context).primaryColor,
+                              size: getDeviceHeight(context) * 0.05,
+                            )
+                          : Icon(
+                              Icons.camera,
+                              color: Theme.of(context).primaryColor,
+                              size: getDeviceHeight(context) * 0.05,
+                            ),
+                      onPressed: () => model.isPatient
+                          ? Navigator.pushNamed(context, '/qr')
+                          : Navigator.pushNamed(context, '/profile'),
+                    ),
                   ],
                   title: GestureDetector(
                     onTap: () {
