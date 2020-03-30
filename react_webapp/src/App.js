@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./views/NavBar/NavBar";
 import LandingPage from "./views/LandingPage/LandingPage";
 import Footer from "./views/Footer/Footer";
+import Login from "./components/Login/Login";
+import Signup from './components/Signup/Signup'
 import "./App.css";
 
 function App() {
@@ -11,7 +13,10 @@ function App() {
     <div>
       <Router>
         <NavBar />
-        <LandingPage />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+
         <Footer />
       </Router>
     </div>

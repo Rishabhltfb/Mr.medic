@@ -21,8 +21,10 @@ class LandingPage extends Component {
           <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center">
               <div class="w-100 text-white">
-                <h1 class="display-3">Patient Database</h1>
-                <p class="lead mb-0">The Computer-Based Patient Record System</p>
+                <h1 class="display-3">Patient Data Management System</h1>
+                <p class="lead mb-0">
+                  The Computer-Based Patient Record System
+                </p>
               </div>
             </div>
           </div>
@@ -32,15 +34,9 @@ class LandingPage extends Component {
           <div class="container">
             <div class="row">
               <div class="col-md-8 mx-auto">
-                <p>
-                  lorem ipsum
-                </p>
-                <p>
-                  lorem ipsum
-                </p>
-                <p>
-                  lorem ipsum
-                </p>
+                <p>lorem ipsum</p>
+                <p>lorem ipsum</p>
+                <p>lorem ipsum</p>
               </div>
             </div>
           </div>
