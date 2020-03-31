@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classnames from "classnames";
+import axios from "axios";
 
 export default class PatientSignup extends Component {
   constructor() {
@@ -30,10 +31,20 @@ export default class PatientSignup extends Component {
       gender: this.state.gender,
       address: this.state.address,
       password: this.state.password,
-      age: this.state.age,
+      age: this.state.age
     };
-    
+
     console.log(newPatientUser);
+    console.log(newPatientUser);
+    const url = "https://evening-dusk-90900.herokuapp.com/api/patient/register";
+    axios
+      .post(url, { newPatientUser })
+      .then(response => {
+        console.log(response.data);
+        window.location = "/discoverPatient";
+      })
+      .catch(err => console.log(err));
+      
   }
 
   onChange(event) {
@@ -53,7 +64,7 @@ export default class PatientSignup extends Component {
           Welcome Patients!
         </h3>
         <form className="form-signin" onSubmit={this.onSubmit}>
-        <div className="form-label-group">
+          <div className="form-label-group">
             <input
               type="text"
               id="inputUserame"
