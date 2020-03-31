@@ -41,7 +41,7 @@ router.post('/register', (req, res) => {
             avatar,
             age: req.body.age,
             city: req.body.city,
-            address: req.body.city,
+            address: req.body.address,
             gender: req.body.gender
             });
 
