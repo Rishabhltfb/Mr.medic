@@ -1,0 +1,9 @@
+Team Name: Coding Vedas
+Team Members: Rishabh Sharma, Naveen Kumar, Ishan Gupta
+Theme Name: Healthcare and Biomedical
+Contact Number: 9410074368
+College Name: Zakir Hussain College of Engineering and Technology
+
+The basic idea of our application is patients should have their medical record in their hands and they can access that anytime and anywhere. Also many times doctors face the same difficulty of keeping the track of patient like, what problems he (patient) has been through, what was suggested in the past and many other areas. So we came up with the idea of getting everything online and within the reach of everyone. Also doctors remain busy so they can not spend much time to create the report, search for the patient, hence in order to tackle with this problem we introduced the QR based system in our android application version where doctor just has to scan the unique QR code of the patient and voila, doctor will be able to read patient's medical history and a current report for current checkup would be created automatically and get stored in the database.
+
+This app would be useful for all the citizens in general as everyone would be benefitted by keeping their medical record. The QR code implementation makes this app supper cool and innovative which makes doctor's work super easy. As this application has both web version and android/iOS application version, users with all types of devices can use this service, also the accessibility of app increased due to the presence of web and mobile version of the app. We believe in open source projects, so we build this app using REST API in node.js and it comes with a well updated documentation, so that other open source developers would be able to use our API and build their own versions of Mr.medic.
