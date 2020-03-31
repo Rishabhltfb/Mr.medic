@@ -37,12 +37,14 @@ class DoctorModel extends ConnectedModel {
           headers: {'Content-Type': 'application/json'});
       if (response.statusCode == 200) {
         final Map<String, dynamic> res = json.decode(response.body);
+        print('Dlogin res');
+        print(res);
         await setAuthenticatedDoctor(res['doctorId'], res['token']);
         isLoading = false;
         notifyListeners();
       }
     } catch (error) {
-      print("Error in Plogin:  " + error.toString());
+      print("Error in Dlogin:  " + error.toString());
       isLoading = false;
       notifyListeners();
       return;
@@ -52,31 +54,31 @@ class DoctorModel extends ConnectedModel {
   Future<Null> setAuthenticatedDoctor(String userId, String token) async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside setAuthenticatedPatient : ' + isLoading.toString());
+    print('Inside setAuthenticatedDoctor : ' + isLoading.toString());
     return await http
         .get(
-      '${uri}api/doctors/doctor/$userId',
+      '${uri}api/doctors/find/$userId',
     )
         .then<Null>((http.Response response) {
       if (response.statusCode == 200) {
         Map<String, dynamic> responseData = json.decode(response.body);
         Doctor doctor = new Doctor(
-          userId: responseData['_id'],
-          token: token,
-          avatar: responseData['avatar'],
-          email: responseData['email'],
-          name: responseData['name'],
-          phone: responseData['phone'],
-          address: responseData['address'],
-          age: responseData['age'],
-          city: responseData['city'],
-          gender: responseData['gender'],
-          reports: responseData['reports'],
-        );
+            userId: responseData['_id'],
+            token: token,
+            avatar: responseData['avatar'],
+            email: responseData['email'],
+            name: responseData['name'],
+            phone: responseData['phone'],
+            city: responseData['city'],
+            gender: responseData['gender'],
+            clinickAddress: responseData['clinickAddress'],
+            specialization: responseData['specialization']);
         authenticatedDoctor = doctor;
+        print(doctor.name);
         // isLoading = false;
         // notifyListeners();
       }
+      print(response.statusCode);
     }).catchError((error) {
       // isLoading = false;
       // notifyListeners();

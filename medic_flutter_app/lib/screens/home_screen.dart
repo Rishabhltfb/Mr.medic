@@ -60,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/profile');
+                      widget.model.isPatient
+                          ? Navigator.pushNamed(context, '/profile')
+                          : Navigator.pushNamed(context, '/error');
                     },
                     child: Container(
                       height: getDeviceHeight(context) * 0.18,
@@ -209,7 +211,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ? AppBar(
                   backgroundColor: Colors.white,
                   leading: GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, '/profile'),
+                    onTap: () {
+                      widget.model.isPatient
+                          ? Navigator.pushNamed(context, '/profile')
+                          : Navigator.pushNamed(context, '/error');
+                    },
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 10),
