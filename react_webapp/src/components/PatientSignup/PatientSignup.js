@@ -32,7 +32,7 @@ export default class PatientSignup extends Component {
       password: this.state.password,
       age: this.state.age,
     };
-
+    
     console.log(newPatientUser);
   }
 
