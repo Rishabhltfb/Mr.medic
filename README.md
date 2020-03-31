@@ -15,7 +15,7 @@ Alternatively API can also be fetched directly from heroku and using the respect
 
 ### Routes
 
-#### Patient
+### Patient
 **localhost:5000/api/patients/test**        
 *(get) to test route is working*  
 **localhost:5000/api/patients/login**    
