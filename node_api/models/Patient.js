@@ -41,6 +41,12 @@ const PatientSchema = new Schema({
             report: {
                 type: Schema.Types.ObjectId,
                 ref: 'reports'
+            },
+            heading: {
+                type: String
+            },
+            date: {
+                type: String
             }
         }
     ]
