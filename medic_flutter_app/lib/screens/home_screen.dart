@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       widget.model.isPatient
                           ? Navigator.pushNamed(context, '/profile')
-                          : Navigator.pushNamed(context, '/error');
+                          : Navigator.pushNamed(context, '/dprofile');
                     },
                     child: Container(
                       height: getDeviceHeight(context) * 0.18,
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Text('Find Doctor')
+                          Text('Profile')
                         ],
                       ),
                     ),
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Text('Medicines')
+                          Text('Find Doctor')
                         ],
                       ),
                     ),
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       widget.model.isPatient
                           ? Navigator.pushNamed(context, '/profile')
-                          : Navigator.pushNamed(context, '/error');
+                          : Navigator.pushNamed(context, '/dprofile');
                     },
                     child: Row(
                       children: <Widget>[
@@ -223,11 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? CircularProgressIndicator()
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
-                                child: FadeInImage.assetNetwork(
+                                child: Image.asset(
+                                  widget.model.isPatient
+                                      ? 'assets/patient.png'
+                                      : 'assets/doctor.png',
                                   height: getDeviceWidth(context) * 0.081,
-                                  fadeInCurve: Curves.easeIn,
-                                  placeholder: 'assets/patient.png',
-                                  image: '',
                                 ),
                               ),
                       ],

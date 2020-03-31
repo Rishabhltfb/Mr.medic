@@ -1,3 +1,4 @@
+import 'package:medic_flutter_app/models/doctor.dart';
 import 'package:medic_flutter_app/models/patient.dart';
 
 import '../api/keys.dart';
@@ -13,4 +14,5 @@ class ConnectedModel extends Model {
   File file = null;
   int report_index = null;
   Patient doctor_client = null;
+  Doctor view_doctor = null;
 }
