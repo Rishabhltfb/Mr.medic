@@ -183,7 +183,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 50.0,
                   ),
                   Text(
-                    "Rishabh Sharma",
+                    widget.model.isPatient
+                        ? widget.model.getAuthenticatedPatient.name
+                        : widget.model.getAuthenticatedDoctor.name,
                     style: Theme.of(context).textTheme.title,
                   ),
                   SizedBox(

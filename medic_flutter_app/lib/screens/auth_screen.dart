@@ -135,7 +135,11 @@ class _AuthScreenState extends State<AuthScreen> {
       return;
     }
     _formKey.currentState.save();
-    widget.model.authenticate(_authMode);
+    if (widget.model.isPatient) {
+      widget.model.patientLogin(_formData['email'], _formData['password']);
+    } else {
+      widget.model.doctorLogin(_formData['email'], _formData['password']);
+    }
     Navigator.pushReplacementNamed(context, '/home');
   }
 

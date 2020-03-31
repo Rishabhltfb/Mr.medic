@@ -3,7 +3,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import './connected_scoped_model.dart';
 import './patient_model.dart';
+import './doctor_model.dart';
 import './utility_model.dart';
 
 class MainModel extends Model
-    with ConnectedModel, UserModel, DoctorModel, UtilityModel {}
+    with ConnectedModel, PatientModel, DoctorModel, UtilityModel {}
