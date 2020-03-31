@@ -21,19 +21,27 @@ export default class Signup extends Component {
               <div className="container">
                 <div className="row">
                   <div
-                    className="card bg-light text-white mb-3 mx-auto rounded-circle border-primary "
-                    style={{ maxWidth: "18" + "rem" }}
-                  >
-                    <button classNameName="btn">
-                      <img className="card-img rounded-circle" src={patient} alt="Card image" />
-                    </button>
-                  </div>
-                  <div
                     className="card text-white bg-light mb-3 mx-auto rounded-circle border-primary "
                     style={{ maxWidth: "18" + "rem" }}
                   >
-                    <button classNameName="btn">
-                      <img className="card-img rounded-circle" src={doctor} alt="Card image" />
+                    <button className="btn rounded-circle">
+                      <img
+                        className="card-img rounded-circle"
+                        src={doctor}
+                        alt="Card image"
+                      />
+                    </button>
+                  </div>
+                  <div
+                    className="card bg-light text-white mb-3 mx-auto rounded-circle border-primary "
+                    style={{ maxWidth: "18" + "rem" }}
+                  >
+                    <button className="btn rounded-circle">
+                      <img
+                        className="card-img rounded-circle"
+                        src={patient}
+                        alt="Card image"
+                      />
                     </button>
                   </div>
                 </div>

@@ -20,7 +20,7 @@ class Login extends Component {
                     className="card bg-light text-white mb-3 mx-auto rounded-circle border-primary"
                     style={{ maxWidth: "18" + "rem" }}
                   >
-                    <button classNameName="btn">
+                    <button className="btn rounded-circle">
                       <img
                         className="card-img rounded-circle"
                         src={patient}
@@ -32,7 +32,7 @@ class Login extends Component {
                     className="card text-white bg-light mb-3 mx-auto rounded-circle border-primary"
                     style={{ maxWidth: "18" + "rem" }}
                   >
-                    <button classNameName="btn">
+                    <button className="btn rounded-circle">
                       <img
                         className="card-img rounded-circle"
                         src={doctor}
