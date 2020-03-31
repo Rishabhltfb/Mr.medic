@@ -17,12 +17,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   Patient patient;
-  final List<Map> collections = [
-    {"title": "Dr.Raman", "speciality": 'ENT'},
-    {"title": "Dr. Ritesh", "speciality": 'Surgeon'},
-    {"title": "Dr.Ambika", "speciality": 'Heart Surgeon'},
-    {"title": "Dr.Lalit", "speciality": 'Orthopedic'},
-  ];
   @override
   void initState() {
     if (widget.model.isPatient) {
@@ -31,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } else {
       print('inside doctor_client');
       patient = widget.model.doctor_client;
+      print(patient);
     }
     super.initState();
   }
@@ -40,35 +35,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return ScopedModelDescendant<MainModel>(
         builder: (BuildContext context, Widget child, MainModel) {
       return Scaffold(
-        body: widget.model.isLoading
-            ? Center(child: CircularProgressIndicator())
-            : Stack(
-                children: <Widget>[
-                  Container(
-                    height: 200.0,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Colors.indigo.shade300,
-                        Colors.indigo.shade500
-                      ]),
-                    ),
-                  ),
-                  ListView.builder(
-                    itemCount: 7,
-                    itemBuilder: _mainListBuilder,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 10),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
+        body: Stack(
+          children: <Widget>[
+            Container(
+              height: 200.0,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.indigo.shade300, Colors.indigo.shade500]),
               ),
+            ),
+            ListView.builder(
+              itemCount: 7,
+              itemBuilder: _mainListBuilder,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0, left: 10),
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
       );
     });
   }

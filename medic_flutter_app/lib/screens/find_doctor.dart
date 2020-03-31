@@ -76,27 +76,11 @@ class _FindDoctorState extends State<FindDoctor> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      IconButton(
-                        onPressed: () {
-                          print('search button pressed');
-                        },
-                        icon: Icon(
-                          Icons.menu,
-                          color: Colors.white,
-                        ),
-                      ),
                       Text(
                         "Find Doctor",
                         style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.filter_list,
-                          color: Colors.white,
-                        ),
                       ),
                     ],
                   ),
@@ -130,6 +114,8 @@ class _FindDoctorState extends State<FindDoctor> {
                                   ),
                                   onPressed: () {
                                     _submitForm();
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
                                   }),
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(

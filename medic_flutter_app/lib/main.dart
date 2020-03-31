@@ -32,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     _model.fetchDoctorsList();
+    _model.fetchCityDoctorsList('aligarh');
     super.initState();
   }
 

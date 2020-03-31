@@ -28,9 +28,9 @@ class PatientModel extends ConnectedModel {
   // }
 
   Future<Null> patientLogin(String email, String password) async {
-    isLoading = true;
-    notifyListeners();
-    print('Inside Plogin : ' + isLoading.toString());
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside Plogin : ');
     Map<String, dynamic> req = {'email': email, 'password': password};
     try {
       http.Response response = await http.post('${uri}api/patients/login',
@@ -40,13 +40,13 @@ class PatientModel extends ConnectedModel {
         final Map<String, dynamic> res = json.decode(response.body);
         await setAuthenticatedPatient(res['patientId'], res['token']);
         print(res['patientId']);
-        isLoading = false;
-        notifyListeners();
+        // isLoading = false;
+        // notifyListeners();
       }
     } catch (error) {
       print("Error in Plogin:  " + error.toString());
-      isLoading = false;
-      notifyListeners();
+      // isLoading = false;
+      // notifyListeners();
       return;
     }
   }
@@ -54,7 +54,7 @@ class PatientModel extends ConnectedModel {
   Future<Null> setAuthenticatedPatient(String userId, String token) async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside setAuthenticatedPatient : ' + isLoading.toString());
+    print('Inside setAuthenticatedPatient : ');
     return await http
         .get(
       '${uri}api/patients/patient/$userId',

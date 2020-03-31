@@ -9,8 +9,8 @@ import './connected_scoped_model.dart';
 
 class UtilityModel extends ConnectedModel {
   Future<Null> imageUpload(String id, File image, String mode) async {
-    isLoading = true;
-    notifyListeners();
+    // isLoading = true;
+    // notifyListeners();
     print('Inside imageUpload : ');
     // Find the mime type of the selected file by looking at the header bytes of the file
     final mimeTypeData =
@@ -47,24 +47,26 @@ class UtilityModel extends ConnectedModel {
         final Map<String, dynamic> responseData = json.decode(response.body);
         print(responseData);
       }
-      isLoading = false;
-      notifyListeners();
+      // isLoading = false;
+      // notifyListeners();
     } catch (error) {
       print('Error in uploading image: ' + error);
-      isLoading = false;
-      notifyListeners();
+      // isLoading = false;
+      // notifyListeners();
       return null;
     }
   }
 
-  Future<Null> fetchPatientProfile(String result, String doctorId) async {
-    isLoading = true;
-    notifyListeners();
-    print('Inside fetchPatientProfile : ' + isLoading.toString());
+  Future<Null> fetchPatientProfile(String doctorId, String result) async {
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside fetchPatientProfile : !!!!!!!!!!!');
 
     List<String> arr = result.split(',');
     String userId = arr[0];
     String token = arr[1];
+    // print(userId);
+    // print(token);
     return await http
         .get(
       '${uri}api/patients/patient/$userId',
@@ -89,9 +91,12 @@ class UtilityModel extends ConnectedModel {
         print('doctor_client name is :' + patient.name);
         print(doctor_client);
         createReport(doctorId, token);
-        isLoading = false;
-        notifyListeners();
+        // isLoading = false;
+        // notifyListeners();
       }
+
+      // isLoading = false;
+      // notifyListeners();
     }).catchError((error) {
       // isLoading = false;
       // notifyListeners();
@@ -101,9 +106,9 @@ class UtilityModel extends ConnectedModel {
   }
 
   Future<Null> createReport(String doctorId, String token) async {
-    isLoading = true;
-    notifyListeners();
-    print('Inside create report : ' + isLoading.toString());
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside create report : ');
     Map<String, dynamic> req = {'doctorId': doctorId};
     try {
       http.Response response = await http.post('${uri}api/reports/report',
@@ -114,13 +119,16 @@ class UtilityModel extends ConnectedModel {
           });
       if (response.statusCode == 200) {
         print('Report Created successfully!');
-        isLoading = false;
-        notifyListeners();
+        // isLoading = false;
+        // notifyListeners();
       }
+
+      // isLoading = true;
+      // notifyListeners();
     } catch (error) {
       print("Error in creating report:  " + error.toString());
-      isLoading = false;
-      notifyListeners();
+      // isLoading = false;
+      // notifyListeners();
       return;
     }
   }

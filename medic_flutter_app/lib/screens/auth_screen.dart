@@ -102,23 +102,19 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             child: ScopedModelDescendant<MainModel>(
               builder: (BuildContext context, Widget child, MainModel model) {
-                return model.isLoading
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Container(
-                        height: getViewportHeight(context) * 0.03,
-                        alignment: Alignment.center,
-                        child: Text(
-                          _authMode == AuthMode.PatientLogin ||
-                                  _authMode == AuthMode.DoctorLogin
-                              ? "Login"
-                              : "Signup",
-                          style: TextStyle(
-                              fontFamily: "Ubuntu",
-                              fontSize: getViewportHeight(context) * 0.02),
-                        ),
-                      );
+                return Container(
+                  height: getViewportHeight(context) * 0.03,
+                  alignment: Alignment.center,
+                  child: Text(
+                    _authMode == AuthMode.PatientLogin ||
+                            _authMode == AuthMode.DoctorLogin
+                        ? "Login"
+                        : "Signup",
+                    style: TextStyle(
+                        fontFamily: "Ubuntu",
+                        fontSize: getViewportHeight(context) * 0.02),
+                  ),
+                );
               },
             ),
             onPressed: () {

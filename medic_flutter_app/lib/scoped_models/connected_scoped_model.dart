@@ -10,7 +10,7 @@ class ConnectedModel extends Model {
   List<Doctor> alldoctorList = [];
   List<Doctor> citydoctorList = [];
   final uri = ApiKeys.uri;
-  bool isLoading = false;
+  // bool isLoading = false;
   bool isPatient = true;
   File file = null;
   int report_index = null;

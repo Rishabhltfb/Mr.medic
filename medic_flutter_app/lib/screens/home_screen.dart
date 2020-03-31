@@ -85,7 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(
+                              Icons.person_pin,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                           Text('Profile')
                         ],
@@ -116,7 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.ac_unit,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Covid 19')
                         ],
@@ -153,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.find_replace,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Find Doctor')
                         ],
@@ -184,7 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.explicit,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Emergency')
                         ],
@@ -219,17 +225,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 10),
-                        model.isLoading
-                            ? CircularProgressIndicator()
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.asset(
-                                  widget.model.isPatient
-                                      ? 'assets/patient.png'
-                                      : 'assets/doctor.png',
-                                  height: getDeviceWidth(context) * 0.081,
-                                ),
-                              ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            widget.model.isPatient
+                                ? 'assets/patient.png'
+                                : 'assets/doctor.png',
+                            height: getDeviceWidth(context) * 0.081,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -237,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     IconButton(
                       icon: model.isPatient
                           ? Icon(
-                              Icons.stars,
+                              Icons.photo_size_select_actual,
                               color: Theme.of(context).primaryColor,
                               size: getDeviceHeight(context) * 0.05,
                             )
@@ -267,11 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(),
                   preferredSize: Size(0.0, 0.0),
                 ),
-          body: model.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : body(),
+          body: body(),
         );
       },
     );
