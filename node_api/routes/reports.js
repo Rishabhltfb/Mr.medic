@@ -15,7 +15,7 @@ router.post('/report', passport.authenticate('jwt', { session: false }), (req, r
     const newReport = new Report({
         patient: req.user.id,
         name: req.user.name,
-        avatar: req.user.avatar,
+        avatar: req.user.avatar
     });
     newReport.save().then(report => {
       report.dateStr = (report.date).toString();
@@ -24,9 +24,11 @@ router.post('/report', passport.authenticate('jwt', { session: false }), (req, r
         if (!patient) {
             console.log('no patient found');
         }
-        patient.reports.unshift({ report: newReport.id });
+        patient.reports.unshift({ report: newReport.id, heading: newReport.heading, date: newReport.dateStr });
         patient.save();
     }).catch(err => console.log(err));
+    newReport.dateStr = (newReport.date).toString();
+    newReport.save();
 });
 
 router.get('/report/:id', (req, res) => {
