@@ -15,7 +15,7 @@ Alternatively API can also be fetched directly from heroku and using the respect
 
 ### Routes
 
-#### Patient
+### Patient
 **localhost:5000/api/patients/test**        
 *(get) to test route is working*  
 **localhost:5000/api/patients/login**    
@@ -65,9 +65,9 @@ Alternatively API can also be fetched directly from heroku and using the respect
 *(get) to get doctors by id*  
 >    params:    id    
 
-**localhost:5000/api/doctors/city/:id**         
+**localhost:5000/api/doctors/city/:city**         
 *(get) to get doctors by city*   
->    params:     id   
+>    params:     city   
     
     
 ### Report    
@@ -85,7 +85,7 @@ Alternatively API can also be fetched directly from heroku and using the respect
 **localhost:5000/api/reports/all**       
 *(get) to get all the reports*
 
-**localhost:5000/api reports/image/:id**    
+**localhost:5000/api/reports/image/:id**    
 *(patch) to upload doctor report*
 >   param: id  
 >  body(file): image   
