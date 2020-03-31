@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LandingCards from "../LandingCards/LandingCards";
 import "./Landing.css";
+import video from "../../assets/front.mp4";
 
 class LandingPage extends Component {
   render() {
@@ -15,7 +16,7 @@ class LandingPage extends Component {
             loop="loop"
           >
             <source
-              src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"
+              src={video}
               type="video/mp4"
             />
           </video>

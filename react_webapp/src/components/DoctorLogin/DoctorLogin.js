@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classnames from "classnames";
+import axios from 'axios'
 
 export default class DoctorLogin extends Component {
   constructor() {
@@ -20,14 +21,12 @@ export default class DoctorLogin extends Component {
       password: this.state.password
     };
     console.log(doctorData);
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({doctorData})
-    };
-    const url="http://evening-dusk-90900.herokuapp.com/api/doctors/login"
-    fetch(url,requestOptions)
-    .then(response => response.json())
+    const url="https://evening-dusk-90900.herokuapp.com/api/doctors/login"
+    axios.post(url, doctorData)
+    .then(response => {
+      console.log(response.data)
+      window.location = "/discoverPatient";
+    })
     .catch(err => console.log(err))
 
 
@@ -35,7 +34,7 @@ export default class DoctorLogin extends Component {
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log({ [event.target.name]: event.target.value });
+    // console.log({ [event.target.name]: event.target.value });
   }
 
   render() {

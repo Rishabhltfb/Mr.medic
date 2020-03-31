@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classnames from "classnames";
+import axios from "axios";
 export default class DoctorSignup extends Component {
   constructor() {
     super();
@@ -39,16 +40,24 @@ export default class DoctorSignup extends Component {
     };
 
     console.log(newDoctorUser);
+    const url = "https://evening-dusk-90900.herokuapp.com/api/doctors/register";
+    axios
+      .post(url, { newDoctorUser })
+      .then(response => {
+        console.log(response.data);
+        window.location = "/discoverPatient";
+      })
+      .catch(err => console.log(err));
   }
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log({ [event.target.name]: event.target.value });
+    // console.log({ [event.target.name]: event.target.value });
   }
 
   setGender(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log({ [event.target.name]: event.target.value });
+    // console.log({ [event.target.name]: event.target.value });
   }
 
   render() {

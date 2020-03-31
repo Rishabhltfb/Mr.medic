@@ -38,7 +38,7 @@ export default class Signup extends Component {
         <div className="row">
           <div
             className="card text-white bg-light mb-3 mx-auto rounded-circle border-primary"
-            style={{ maxWidth: "18" + "rem" }}
+            style={{ maxWidth: "18rem" }}
           >
             <button
               className="btn rounded-circle"
@@ -49,7 +49,7 @@ export default class Signup extends Component {
               <img
                 className="card-img rounded-circle"
                 src={doctor}
-                alt="Card image"
+                alt="logo"
                 name="user"
                 // value="doctor"
                 // onClick={this.userSignup}
@@ -58,7 +58,7 @@ export default class Signup extends Component {
           </div>
           <div
             className="card bg-light text-white mb-3 mx-auto rounded-circle border-primary"
-            style={{ maxWidth: "18" + "rem" }}
+            style={{ maxWidth: "18rem" }}
           >
             <button
               className="btn rounded-circle"
@@ -69,7 +69,7 @@ export default class Signup extends Component {
               <img
                 className="card-img rounded-circle"
                 src={patient}
-                alt="Card image"
+                alt="logo"
                 name="user"
                 // value="patient"
                 // onClick={this.userSignup}

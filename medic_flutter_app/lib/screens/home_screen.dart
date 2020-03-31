@@ -85,7 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(
+                              Icons.person_pin,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                           Text('Profile')
                         ],
@@ -116,7 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.ac_unit,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Covid 19')
                         ],
@@ -153,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.find_replace,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Find Doctor')
                         ],
@@ -184,7 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit),
+                            child: Icon(Icons.explicit,
+                                color: Theme.of(context).primaryColor),
                           ),
                           Text('Emergency')
                         ],
