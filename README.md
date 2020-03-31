@@ -30,6 +30,14 @@ git clone 'repository_url'
 ```
 flutter run
 ```
+-Login credentials(Dummy Users) for app:
+```
+patient-username:  ishan@email.com
+patient-password:  12345
+
+doctor-username:  doctorNew@email.com
+doctor-password:  12345
+```
 
 A few resources to get you started if this is your first Flutter project:
 
