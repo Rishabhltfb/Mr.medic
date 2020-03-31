@@ -9,17 +9,17 @@ const Doctor = require('../models/Doctor');
 const validatedoctorRegister = require('../validation/doctor-register');
 const validateLoginInput = require('../validation/doctor-login');
 
+//require("../config/passport2")(passport);
+
 router.get('/test', (req, res) => {
     res.json({ msg: 'doctor route work' })
 });
 
 router.post('/register', (req, res) => {
-    console.log('1');
     const { errors, isValid } = validatedoctorRegister(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
     Doctor.findOne({ email: req.body.email }).then(doctor => {
         if (doctor) {
             errors.email = 'Email already exists';
@@ -101,5 +101,22 @@ router.post('/login', (req, res) => {
       });
     });
   });
+
+router.get('/find/:id', (req, res) => {
+  Doctor.findById(req.params.id).then(doctor => res.json(doctor))
+          .catch(error => res.status(404).json({ noDoctorFound: 'no doctor found with given ID' }));
+});
+
+router.get('/city/:city', (req, res) => {
+  Doctor.find({ city: req.params.city }).then(doctors => {
+    res.json(doctors);
+  }).catch(error => res.status(400).json({noDoctorFound: 'no doctor found in that city'}));
+});
+
+router.get('/all', (req, res) => {
+  Doctor.find().then(doctors => {
+    res.json(doctors);
+  }).catch(error => res.status(404).json({ noDoctorFound: 'no doctor found with given ID' }));
+});
 
 module.exports = router;

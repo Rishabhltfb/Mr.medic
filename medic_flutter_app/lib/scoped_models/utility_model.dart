@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http_parser/http_parser.dart';
+import 'package:medic_flutter_app/models/auth.dart';
 import 'package:mime/mime.dart';
 import 'package:http/http.dart' as http;
 import './connected_scoped_model.dart';
@@ -67,6 +68,10 @@ class UtilityModel extends ConnectedModel {
     return avatar;
   }
 
+  void authenticate(AuthMode authMode) {
+    print(authMode);
+  }
+
   void setImage(File image) {
     print('Inside setImage' + image.toString());
     file = image;
@@ -82,5 +87,14 @@ class UtilityModel extends ConnectedModel {
   String getKey() {
     print('Inside get Key: ');
     return uri;
+  }
+
+  void setPatient(bool choice) {
+    isPatient = choice;
+  }
+
+  bool getisPatient() {
+    print('Inside get isPatient: ');
+    return isPatient;
   }
 }

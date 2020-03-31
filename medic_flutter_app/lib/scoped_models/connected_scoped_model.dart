@@ -7,5 +7,6 @@ class ConnectedModel extends Model {
   // List<Tweet> feedList = [];
   final uri = ApiKeys.uri;
   bool isLoading = false;
+  bool isPatient = true;
   File file = null;
 }

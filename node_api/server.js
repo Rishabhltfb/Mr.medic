@@ -19,13 +19,17 @@ mongoose
   .then(() => console.log("MongoDB Connected Succesfully"))
   .catch(err => console.log(err));
 
+app.use('/uploads', express.static('uploads'));
 const patient = require('./routes/patients');
 app.use('/api/patients',patient);
 const doctor = require('./routes/doctors');
 app.use('/api/doctors',doctor);
+const report = require('./routes/reports');
+app.use('/api/reports',report)
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
+// require("./config/passport2")(passport);
 
 app.use((req, res, next) => {
     const error = new Error("Route not found");
