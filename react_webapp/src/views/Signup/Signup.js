@@ -20,7 +20,7 @@ export default class Signup extends Component {
             <div className="login d-flex align-items-center py-5">
               <div className="container">
                 <div className="row">
-                  <div
+                  {/* <div
                     className="card text-white bg-light mb-3 mx-auto rounded-circle border-primary "
                     style={{ maxWidth: "18" + "rem" }}
                   >
@@ -43,7 +43,8 @@ export default class Signup extends Component {
                         alt="Card image"
                       />
                     </button>
-                  </div>
+                  </div> */}
+                  <DoctorSignup />
                 </div>
               </div>
             </div>
