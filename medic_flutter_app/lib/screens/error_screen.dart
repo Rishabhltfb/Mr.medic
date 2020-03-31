@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medic_flutter_app/helpers/dimensions.dart';
 
 class ErrorScreen extends StatelessWidget {
   @override
@@ -8,12 +7,6 @@ class ErrorScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          // SizedBox(
-          //   height: getDeviceHeight(context) * 0.1,
-          // ),
-          // IconButton(
-          //     icon: Icon(Icons.arrow_back),
-          //     onPressed: () => Navigator.pop(context)),
           Expanded(
             flex: 2,
             child: Image.asset(

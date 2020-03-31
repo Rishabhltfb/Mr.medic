@@ -22,7 +22,8 @@ class _QrScanState extends State<QrScan> {
       setState(() {
         result = qrResult;
       });
-      widget.model.fetchPatientProfile(result);
+      widget.model
+          .fetchPatientProfile(widget.model.authenticatedDoctor.userId, result);
       setState(() {
         result = 'Searching Records ...';
       });
