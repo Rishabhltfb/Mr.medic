@@ -49,7 +49,7 @@ export default class PatientLogin extends Component {
                 required
                 autoFocus
               />
-              <label for="inputEmail">Email address</label>
+              <label htmlFor="inputEmail">Email address</label>
               {errors.email && (
                 <div className="is-invalid-feedback">{errors.email}</div>
               )}
@@ -68,7 +68,7 @@ export default class PatientLogin extends Component {
                 onChange={this.onChange}
                 required
               />
-              <label for="inputPassword">Password</label>
+              <label htmlFor="inputPassword">Password</label>
               {errors.password && (
                 <div className="is-invalid-feedback">{errors.password}</div>
               )}
