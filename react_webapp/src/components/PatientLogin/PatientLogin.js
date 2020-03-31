@@ -16,7 +16,7 @@ export default class PatientLogin extends Component {
                 className="form-control"
                 placeholder="Email address"
                 required
-                autofocus
+                autoFocus
               />
               <label for="inputEmail">Email address</label>
             </div>

@@ -16,7 +16,7 @@ class Login extends Component {
             <div className="login d-flex align-items-center py-5">
               <div className="container">
                 <div className="row">
-                  <div
+                  {/* <div
                     className="card bg-light text-white mb-3 mx-auto rounded-circle border-primary"
                     style={{ maxWidth: "18" + "rem" }}
                   >
@@ -39,7 +39,8 @@ class Login extends Component {
                         alt="Card image"
                       />
                     </button>
-                  </div>
+                  </div> */}
+                  <DoctorLogin />
                 </div>
               </div>
             </div>
