@@ -125,6 +125,7 @@ router.get('/all', (req, res) => {
     .exec()
     .then(patients => {
       const response = {
+        count: patients.length,
         patients: patients
       };
       res.status(200).json(response);
