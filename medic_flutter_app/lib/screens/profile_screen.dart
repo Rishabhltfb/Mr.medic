@@ -1,5 +1,8 @@
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:medic_flutter_app/models/patient.dart';
+
+import 'package:scoped_model/scoped_model.dart';
 import 'package:medic_flutter_app/scoped_models/main_scoped_model.dart';
 import 'package:medic_flutter_app/widgets/report_format.dart';
 // import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
@@ -13,42 +16,61 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  Patient patient;
   final List<Map> collections = [
     {"title": "Dr.Raman", "speciality": 'ENT'},
     {"title": "Dr. Ritesh", "speciality": 'Surgeon'},
     {"title": "Dr.Ambika", "speciality": 'Heart Surgeon'},
     {"title": "Dr.Lalit", "speciality": 'Orthopedic'},
   ];
+  @override
+  void initState() {
+    if (widget.model.isPatient) {
+      print('inside profile patient');
+      patient = widget.model.getAuthenticatedPatient;
+    } else {
+      print('inside doctor_client');
+      patient = widget.model.doctor_client;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: 200.0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.indigo.shade300, Colors.indigo.shade500]),
-            ),
-          ),
-          ListView.builder(
-            itemCount: 7,
-            itemBuilder: _mainListBuilder,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 10),
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
+    return ScopedModelDescendant<MainModel>(
+        builder: (BuildContext context, Widget child, MainModel) {
+      return Scaffold(
+        body: widget.model.isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Stack(
+                children: <Widget>[
+                  Container(
+                    height: 200.0,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        Colors.indigo.shade300,
+                        Colors.indigo.shade500
+                      ]),
+                    ),
+                  ),
+                  ListView.builder(
+                    itemCount: 7,
+                    itemBuilder: _mainListBuilder,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40.0, left: 10),
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+      );
+    });
   }
 
   Widget _mainListBuilder(BuildContext context, int index) {
@@ -103,15 +125,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             "Dr. Nearby",
             style: Theme.of(context).textTheme.title,
           ),
-          widget.model.isPatient
-              ? FlatButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Create new",
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                )
-              : Container(),
         ],
       ),
     );
@@ -184,9 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 50.0,
                   ),
                   Text(
-                    widget.model.isPatient
-                        ? widget.model.getAuthenticatedPatient.name
-                        : widget.model.getAuthenticatedDoctor.name,
+                    patient.name,
                     style: Theme.of(context).textTheme.title,
                   ),
                   SizedBox(

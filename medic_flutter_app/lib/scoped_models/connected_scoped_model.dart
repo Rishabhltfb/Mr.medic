@@ -1,3 +1,5 @@
+import 'package:medic_flutter_app/models/patient.dart';
+
 import '../api/keys.dart';
 import 'dart:io';
 import 'package:scoped_model/scoped_model.dart';
@@ -10,4 +12,5 @@ class ConnectedModel extends Model {
   bool isPatient = true;
   File file = null;
   int report_index = null;
+  Patient doctor_client = null;
 }

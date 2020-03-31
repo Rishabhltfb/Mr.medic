@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:http_parser/http_parser.dart';
 import 'package:medic_flutter_app/models/auth.dart';
+import 'package:medic_flutter_app/models/patient.dart';
 import 'package:mime/mime.dart';
 import 'package:http/http.dart' as http;
 import './connected_scoped_model.dart';
@@ -57,6 +58,48 @@ class UtilityModel extends ConnectedModel {
     }
   }
 
+  Future<Null> fetchPatientProfile(String result) async {
+    isLoading = true;
+    notifyListeners();
+    print('Inside fetchPatientProfile : ' + isLoading.toString());
+
+    List<String> arr = result.split(',');
+    String userId = arr[0];
+    String token = arr[1];
+    return await http
+        .get(
+      '${uri}api/patients/patient/$userId',
+    )
+        .then<Null>((http.Response response) {
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseData = json.decode(response.body);
+        Patient patient = new Patient(
+          userId: responseData['_id'],
+          token: token,
+          avatar: responseData['avatar'],
+          email: responseData['email'],
+          name: responseData['name'],
+          // phone: responseData['phone'],
+          address: responseData['address'],
+          age: responseData['age'],
+          city: responseData['city'],
+          gender: responseData['gender'],
+          reports: responseData['reports'],
+        );
+        doctor_client = patient;
+        print('doctor_client name is :' + patient.name);
+        print(doctor_client);
+        isLoading = false;
+        notifyListeners();
+      }
+    }).catchError((error) {
+      // isLoading = false;
+      // notifyListeners();
+      print("Fetch Authenticated User Error: ${error.toString()}");
+      return;
+    });
+  }
+
   String parseImage(String imageAddress) {
     String avatar;
     if (imageAddress.contains('\\')) {
@@ -66,10 +109,6 @@ class UtilityModel extends ConnectedModel {
       avatar = imageAddress;
     }
     return avatar;
-  }
-
-  void authenticate(AuthMode authMode) {
-    print(authMode);
   }
 
   void setImage(File image) {

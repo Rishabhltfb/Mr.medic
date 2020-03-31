@@ -4,8 +4,11 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:medic_flutter_app/helpers/dimensions.dart';
+import 'package:medic_flutter_app/scoped_models/main_scoped_model.dart';
 
 class QrScan extends StatefulWidget {
+  final MainModel model;
+  QrScan(this.model);
   @override
   _QrScanState createState() => _QrScanState();
 }
@@ -18,6 +21,15 @@ class _QrScanState extends State<QrScan> {
       String qrResult = await BarcodeScanner.scan();
       setState(() {
         result = qrResult;
+      });
+      widget.model.fetchPatientProfile(result);
+      setState(() {
+        result = 'Searching Records ...';
+      });
+      Timer(Duration(seconds: 3), () {
+        widget.model.doctor_client != Null
+            ? Navigator.pushReplacementNamed(context, '/profile')
+            : print('navigation error');
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
