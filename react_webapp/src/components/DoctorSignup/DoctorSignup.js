@@ -93,7 +93,7 @@ export default class DoctorSignup extends Component {
               required
             />
             <label for="inputEmail">Email address</label>
-            {errors.name && (
+            {errors.email && (
               <div className="is-invalid-feedback">{errors.email}</div>
             )}
           </div>
@@ -112,7 +112,7 @@ export default class DoctorSignup extends Component {
               required
             />
             <label for="inputClinicAddress">Clinic/Hospital Address</label>
-            {errors.name && (
+            {errors.clinickAddress && (
               <div className="is-invalid-feedback">{errors.clinickAddress}</div>
             )}
           </div>
@@ -131,7 +131,7 @@ export default class DoctorSignup extends Component {
               required
             />
             <label for="inputCity">City</label>
-            {errors.name && (
+            {errors.city && (
               <div className="is-invalid-feedback">{errors.city}</div>
             )}
           </div>
@@ -177,7 +177,7 @@ export default class DoctorSignup extends Component {
               required
             />
             <label for="specialization">Specialization</label>
-            {errors.name && (
+            {errors.specialization && (
               <div className="is-invalid-feedback">{errors.specialization}</div>
             )}
           </div>
@@ -255,7 +255,7 @@ export default class DoctorSignup extends Component {
               required
             />
             <label for="inputPassword">Password</label>
-            {errors.name && (
+            {errors.password && (
               <div className="is-invalid-feedback">{errors.password}</div>
             )}
           </div>

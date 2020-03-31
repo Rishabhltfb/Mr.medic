@@ -44,7 +44,8 @@ export default class Signup extends Component {
                       />
                     </button>
                   </div> */}
-                  <DoctorSignup />
+                  {/* <DoctorSignup /> */}
+                  <PatientSignup />
                 </div>
               </div>
             </div>
