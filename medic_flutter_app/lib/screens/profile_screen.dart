@@ -1,11 +1,12 @@
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:medic_flutter_app/scoped_models/main_scoped_model.dart';
+import 'package:medic_flutter_app/widgets/report_format.dart';
 // import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 // import 'package:flutter_ui_challenges/src/widgets/network_image.dart';
 
 class ProfileScreen extends StatefulWidget {
-  MainModel model;
+  final MainModel model;
   ProfileScreen(this.model);
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -13,10 +14,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final List<Map> collections = [
-    {"title": "Food joint", "image": 'meal'},
-    {"title": "Photos", "image": 'images[1]'},
-    {"title": "Travel", "image": 'fishtail'},
-    {"title": "Nepal", "image": 'kathmandu2'},
+    {"title": "Dr.Raman", "speciality": 'ENT'},
+    {"title": "Dr. Ritesh", "speciality": 'Surgeon'},
+    {"title": "Dr.Ambika", "speciality": 'Heart Surgeon'},
+    {"title": "Dr.Lalit", "speciality": 'Orthopedic'},
   ];
 
   @override
@@ -41,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ),
@@ -60,16 +61,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
           padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
           child: Text("Medical History",
               style: Theme.of(context).textTheme.title));
-    return _buildListItem();
+    return _buildListItem(index);
   }
 
-  Widget _buildListItem() {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.0),
-        child: Image.asset('assets/doctor.png'),
+  Widget _buildListItem(int index) {
+    return GestureDetector(
+      onTap: () {
+        print(index);
+        widget.model.setReportIndex(index);
+        Navigator.pushNamed(context, '/report');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            new BoxShadow(
+              color: Colors.blueGrey,
+              blurRadius: 10.0,
+            ),
+          ],
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        child: ReportContent(index, widget.model, true),
       ),
     );
   }
@@ -82,16 +99,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Collection",
+            "Dr. Nearby",
             style: Theme.of(context).textTheme.title,
           ),
-          FlatButton(
-            onPressed: () {},
-            child: Text(
-              "Create new",
-              style: TextStyle(color: Colors.blue),
-            ),
-          )
+          widget.model.isPatient
+              ? FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Create new",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );
@@ -108,28 +127,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
         itemCount: collections.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-              margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-              width: 150.0,
-              height: 200.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5.0),
-                      child: Image.asset('assets/doctor.png'),
-                    ),
+            margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+            width: 150.0,
+            height: 200.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Image.asset('assets/doctor.png'),
                   ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(collections[index]['title'],
-                      style: Theme.of(context)
-                          .textTheme
-                          .subhead
-                          .merge(TextStyle(color: Colors.grey.shade600)))
-                ],
-              ));
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  collections[index]['title'],
+                  style: Theme.of(context).textTheme.subhead.merge(
+                        TextStyle(color: Colors.grey.shade600),
+                      ),
+                ),
+                Text(
+                  'Speciality',
+                  style: Theme.of(context).textTheme.subhead.merge(
+                        TextStyle(
+                            color: Colors.blueGrey.shade600, fontSize: 12),
+                      ),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
@@ -155,13 +183,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 50.0,
                   ),
                   Text(
-                    "Mebina Nepal",
+                    "Rishabh Sharma",
                     style: Theme.of(context).textTheme.title,
                   ),
                   SizedBox(
                     height: 5.0,
                   ),
-                  Text("UI/UX designer | Foodie | Kathmandu"),
+                  Text("App Developer | Foodie | Aligarh"),
                   SizedBox(
                     height: 16.0,
                   ),
@@ -173,11 +201,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              "302",
+                              "M",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            subtitle: Text("Posts".toUpperCase(),
+                            subtitle: Text("Gender".toUpperCase(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 12.0)),
                           ),
@@ -185,11 +213,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              "10.3K",
+                              "7355419294",
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
                             ),
-                            subtitle: Text("Followers".toUpperCase(),
+                            subtitle: Text("Contact".toUpperCase(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 12.0)),
                           ),
@@ -197,11 +226,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              "120",
+                              "1",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            subtitle: Text("Following".toUpperCase(),
+                            subtitle: Text("Patient".toUpperCase(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 12.0)),
                           ),

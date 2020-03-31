@@ -97,4 +97,13 @@ class UtilityModel extends ConnectedModel {
     print('Inside get isPatient: ');
     return isPatient;
   }
+
+  void setReportIndex(int index) {
+    report_index = index;
+  }
+
+  int getReportIndex() {
+    print('Inside get report index: ');
+    return report_index;
+  }
 }

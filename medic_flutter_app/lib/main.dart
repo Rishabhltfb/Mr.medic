@@ -3,6 +3,7 @@ import 'package:medic_flutter_app/screens/auth_screen.dart';
 import 'package:medic_flutter_app/screens/patient_doctor.dart';
 import 'package:medic_flutter_app/screens/profile_screen.dart';
 import 'package:medic_flutter_app/screens/qr_generator.dart';
+import 'package:medic_flutter_app/screens/report_screen.dart';
 import 'package:medic_flutter_app/screens/scan_qr.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/rendering.dart';
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
           '/qr': (BuildContext context) => QrCode(),
           '/qrscan': (BuildContext context) => QrScan(),
           '/error': (BuildContext context) => ErrorScreen(),
+          '/report': (BuildContext context) => ReportScreen(_model),
         },
       ),
     );

@@ -17,7 +17,7 @@ class ErrorScreen extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Image.asset(
-                'assets/jelly.png',
+                'assets/doctor.png',
               ),
             ),
             Expanded(

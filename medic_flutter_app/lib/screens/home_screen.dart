@@ -63,8 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pushNamed(context, '/profile');
                     },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      // color: Colors.white,
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -80,10 +94,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/error');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -92,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
+                            child: Text('Covid 19'),
                           )
                         ],
                       ),
@@ -105,10 +134,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/error');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -117,17 +161,32 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
+                            child: Text('Medicines'),
                           )
                         ],
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/error');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -136,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
+                            child: Text('Emergency'),
                           )
                         ],
                       ),
@@ -171,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: FadeInImage.assetNetwork(
-                                  height: getDeviceWidth(context) * 0.085,
+                                  height: getDeviceWidth(context) * 0.081,
                                   fadeInCurve: Curves.easeIn,
                                   placeholder: 'assets/patient.png',
                                   image: '',
@@ -200,10 +259,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                   title: GestureDetector(
                     onTap: () {
-                      // _scrollBottomBarController.animateTo(
-                      //   0.0,
-                      //   curve: Curves.easeOut,
-                      //   duration: const Duration(milliseconds: 300),
                       // );
                     },
                     child: Image.asset(

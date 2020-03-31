@@ -9,4 +9,5 @@ class ConnectedModel extends Model {
   bool isLoading = false;
   bool isPatient = true;
   File file = null;
+  int report_index = null;
 }
