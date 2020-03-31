@@ -225,17 +225,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 10),
-                        model.isLoading
-                            ? CircularProgressIndicator()
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.asset(
-                                  widget.model.isPatient
-                                      ? 'assets/patient.png'
-                                      : 'assets/doctor.png',
-                                  height: getDeviceWidth(context) * 0.081,
-                                ),
-                              ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            widget.model.isPatient
+                                ? 'assets/patient.png'
+                                : 'assets/doctor.png',
+                            height: getDeviceWidth(context) * 0.081,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -243,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     IconButton(
                       icon: model.isPatient
                           ? Icon(
-                              Icons.stars,
+                              Icons.photo_size_select_actual,
                               color: Theme.of(context).primaryColor,
                               size: getDeviceHeight(context) * 0.05,
                             )
@@ -273,11 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(),
                   preferredSize: Size(0.0, 0.0),
                 ),
-          body: model.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : body(),
+          body: body(),
         );
       },
     );

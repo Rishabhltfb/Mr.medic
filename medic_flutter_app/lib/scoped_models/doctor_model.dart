@@ -14,7 +14,7 @@ class DoctorModel extends ConnectedModel {
   Future<Null> fetchDoctorsList() async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside fetch Doctors List: ' + isLoading.toString());
+    print('Inside fetch Doctors List: ');
     try {
       http.Response response = await http.get('${uri}api/doctors/all');
       if (response.statusCode == 200) {
@@ -53,7 +53,7 @@ class DoctorModel extends ConnectedModel {
   Future<Null> fetchCityDoctorsList(String city) async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside fetch City Doctors List: ' + isLoading.toString());
+    print('Inside fetch City Doctors List: ');
     try {
       http.Response response = await http.get('${uri}api/doctors/city/$city');
       if (response.statusCode == 200) {
@@ -93,9 +93,9 @@ class DoctorModel extends ConnectedModel {
   }
 
   Future<Null> doctorLogin(String email, String password) async {
-    isLoading = true;
-    notifyListeners();
-    print('Inside Dlogin : ' + isLoading.toString());
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside Dlogin : ');
     Map<String, dynamic> req = {'email': email, 'password': password};
     try {
       http.Response response = await http.post('${uri}api/doctors/login',
@@ -106,12 +106,10 @@ class DoctorModel extends ConnectedModel {
         print('Dlogin res');
         print(res);
         await setAuthenticatedDoctor(res['doctorId'], res['token']);
-        isLoading = false;
         notifyListeners();
       }
     } catch (error) {
       print("Error in Dlogin:  " + error.toString());
-      isLoading = false;
       notifyListeners();
       return;
     }
@@ -120,7 +118,7 @@ class DoctorModel extends ConnectedModel {
   Future<Null> setAuthenticatedDoctor(String userId, String token) async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside setAuthenticatedDoctor : ' + isLoading.toString());
+    print('Inside setAuthenticatedDoctor : ');
     return await http
         .get(
       '${uri}api/doctors/find/$userId',
