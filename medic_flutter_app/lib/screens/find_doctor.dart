@@ -13,7 +13,7 @@ class FindDoctor extends StatefulWidget {
 class _FindDoctorState extends State<FindDoctor> {
   final TextStyle dropdownMenuItem =
       TextStyle(color: Colors.black, fontSize: 18);
-  String city;
+  String city = null;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final List<Map> schoolLists = [
@@ -58,7 +58,9 @@ class _FindDoctorState extends State<FindDoctor> {
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
                 child: ListView.builder(
-                    itemCount: widget.model.citydoctorList.length,
+                    itemCount: city != null
+                        ? widget.model.citydoctorList.length
+                        : widget.model.alldoctorList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return buildList(context, index);
                     }),
@@ -183,7 +185,9 @@ class _FindDoctorState extends State<FindDoctor> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  widget.model.citydoctorList[index].name,
+                  city != null
+                      ? widget.model.citydoctorList[index].name
+                      : widget.model.alldoctorList[index].name,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
@@ -202,7 +206,10 @@ class _FindDoctorState extends State<FindDoctor> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text(widget.model.citydoctorList[index].clinickAddress,
+                    Text(
+                        city != null
+                            ? widget.model.citydoctorList[index].clinickAddress
+                            : widget.model.alldoctorList[index].clinickAddress,
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 13,
@@ -222,7 +229,10 @@ class _FindDoctorState extends State<FindDoctor> {
                     SizedBox(
                       width: 5,
                     ),
-                    Text(widget.model.citydoctorList[index].specialization,
+                    Text(
+                        city != null
+                            ? widget.model.citydoctorList[index].specialization
+                            : widget.model.alldoctorList[index].specialization,
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 13,
