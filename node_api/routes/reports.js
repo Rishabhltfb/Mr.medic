@@ -17,8 +17,9 @@ router.post('/report', passport.authenticate('jwt', { session: false }), (req, r
         name: req.user.name,
         avatar: req.user.avatar,
     });
-
-    newReport.save().then(report => res.json(report));
+    newReport.save().then(report => {
+      report.dateStr = (report.date).toString();
+      res.json(report)});
     Patient.findOne({ email: req.user.email }).then(patient => {
         if (!patient) {
             console.log('no patient found');
@@ -39,6 +40,7 @@ router.get('/all', (req, res) => {
     Report.find().sort({ date: -1 })
         .then(reports => {
             const response = {
+                count: reports.length,
                 reports: reports
             };
             res.json({ response })
@@ -95,7 +97,8 @@ router.patch("/update/:id", (req, res, next) => {
       heading: req.body.heading,
       disease: req.body.disease,
       remarks: req.body.remarks,
-      suggestedMedicines: req.body.suggestedMedicines
+      suggestedMedicines: req.body.suggestedMedicines,
+      patientNotes: req.body.patientNotes
   };
   Report.update({ _id: id }, { $set: updateOps })
     .exec()

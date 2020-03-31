@@ -21,13 +21,14 @@ const ReportSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    dateStr: {
+        type: String
+    },
     disease: {
         type: String,
-        required: true
     },
     reportImage: {
         type: String,
-        required: true
     },
     extractedText: {
         type: String
@@ -50,13 +51,9 @@ const ReportSchema = new Schema({
             }
         }
     ],
-    patientNotes: [
-        {
-            note: {
-                type: String
-            }
-        }
-    ],
+    patientNotes:{
+        type: String
+    },
     remark: {
         type: String
     }
