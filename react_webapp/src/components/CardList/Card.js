@@ -9,11 +9,11 @@ const Card = ({ name, email, id, city, clinickAddress, specialization, avatar })
           <strong><h4 className="card-title mx-auto">{name}</h4></strong>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Id: {id}</li>
-          <li className="list-group-item">Email: {email}</li>
-          <li className="list-group-item">ClinickAddress: {clinickAddress}</li>
-          <li className="list-group-item">City: {city}</li>
-          <li className="list-group-item">Specialization: {specialization}</li>
+          <li className="list-group-item"><strong>Id:</strong> {id}</li>
+          <li className="list-group-item"><strong>Email:</strong> {email}</li>
+          <li className="list-group-item"><strong>ClinickAddress:</strong> {clinickAddress}</li>
+          <li className="list-group-item"><strong>City:</strong> {city}</li>
+          <li className="list-group-item"><strong>Specialization:</strong> {specialization}</li>
         </ul>
         <div className="card-body"></div>
       </div>

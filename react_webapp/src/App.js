@@ -8,7 +8,7 @@ import DiscoverPatient from "./views/DiscoverPatient/DiscoverPatient";
 
 import Footer from "./views/Footer/Footer";
 import Login from "./views/Login/Login";
-import Signup from './views/Signup/Signup'
+import Signup from "./views/Signup/Signup";
 import "./App.css";
 
 function App() {

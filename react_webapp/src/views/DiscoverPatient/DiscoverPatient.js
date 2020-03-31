@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Scroll from "../../components/Scroll/Scroll";
+// import Scroll from "../../components/Scroll/Scroll";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import PatientCardList from "../../components/PatientCardList/PatientCardList";
 
@@ -42,9 +42,9 @@ class DiscoverPatient extends Component {
       <div className="container mt-5 pt-5">
         <h1 className="f1">Search Patients</h1>
         <SearchBox searchChange={this.onSearchChange} />
-        <Scroll>
+        {/* <Scroll> */}
           <PatientCardList filterPatient={filterPatient} />
-        </Scroll>
+        {/* </Scroll> */}
       </div>
     );
   }

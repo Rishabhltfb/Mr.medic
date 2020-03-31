@@ -44,6 +44,7 @@ export default class PatientSignup extends Component {
         window.location = "/discoverPatient";
       })
       .catch(err => console.log(err));
+      
   }
 
   onChange(event) {
