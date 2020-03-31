@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medic_flutter_app/screens/auth_screen.dart';
 import 'package:medic_flutter_app/screens/doctor_profile.dart';
+import 'package:medic_flutter_app/screens/find_doctor.dart';
 import 'package:medic_flutter_app/screens/patient_doctor.dart';
 import 'package:medic_flutter_app/screens/profile_screen.dart';
 import 'package:medic_flutter_app/screens/qr_generator.dart';
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
           '/home': (BuildContext context) => HomeScreen(_model),
           '/profile': (BuildContext context) => ProfileScreen(_model),
           '/dprofile': (BuildContext context) => DocrtorProfileScreen(_model),
+          '/findDoctor': (BuildContext context) => FindDoctor(_model),
           '/qr': (BuildContext context) => QrCode(_model),
           '/qrscan': (BuildContext context) => QrScan(_model),
           '/error': (BuildContext context) => ErrorScreen(),

@@ -55,18 +55,19 @@ class DoctorModel extends ConnectedModel {
     // notifyListeners();
     print('Inside fetch City Doctors List: ' + isLoading.toString());
     try {
-      http.Response response = await http.get('${uri}api/doctors/find/$city');
+      http.Response response = await http.get('${uri}api/doctors/city/$city');
       if (response.statusCode == 200) {
-        print('Successfully fetched doctor list');
+        print('Successfully fetched city doctor list');
         final List<Doctor> fetchedDoctorList = [];
-        final Map<String, dynamic> doctorListData = json.decode(response.body);
-        if (doctorListData == null) {
+        final Map<String, dynamic> citydoctorListData =
+            json.decode(response.body);
+        if (citydoctorListData == null) {
           // isLoading = false;
           // notifyListeners();
           return;
         }
-        print(doctorListData);
-        doctorListData['doctors'].forEach(
+        print(citydoctorListData);
+        citydoctorListData['doctors'].forEach(
           (dynamic responseData) {
             Doctor doctor = new Doctor(
               userId: responseData['_id'],
@@ -82,7 +83,7 @@ class DoctorModel extends ConnectedModel {
             fetchedDoctorList.add(doctor);
           },
         );
-        alldoctorList = fetchedDoctorList;
+        citydoctorList = fetchedDoctorList;
         print(alldoctorList);
       }
     } catch (error) {
