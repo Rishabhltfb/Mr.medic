@@ -28,7 +28,7 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/discover">
                   Discover
                 </Link>
               </li>
