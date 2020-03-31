@@ -109,13 +109,13 @@ router.get('/find/:id', (req, res) => {
 
 router.get('/city/:city', (req, res) => {
   Doctor.find({ city: req.params.city }).then(doctors => {
-    res.json(doctors);
+    res.json({count: doctors.length, doctors: doctors});
   }).catch(error => res.status(400).json({noDoctorFound: 'no doctor found in that city'}));
 });
 
 router.get('/all', (req, res) => {
   Doctor.find().then(doctors => {
-    res.json(doctors);
+    res.json({count: doctors.length, doctors: doctors});
   }).catch(error => res.status(404).json({ noDoctorFound: 'no doctor found with given ID' }));
 });
 

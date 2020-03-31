@@ -29,9 +29,9 @@ export default class Signup extends Component {
     const user = this.state.user;
     let comp;
 
-    if (user == "patient") {
+    if (user === "patient") {
       comp = <PatientSignup />;
-    } else if (user == "doctor") {
+    } else if (user === "doctor") {
       comp = <DoctorSignup />;
     } else {
       comp = (
