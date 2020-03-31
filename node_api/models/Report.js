@@ -57,13 +57,9 @@ const ReportSchema = new Schema({
             }
         }
     ],
-    DoctorNotes: [
-        {
-            note:{
-                type: String
-            }
-        }
-    ]
+    remark: {
+        type: String
+    }
 });
 
 module.exports = Report = mongoose.model('reports', ReportSchema);

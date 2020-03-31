@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LandingCards from "../LandingCards/LandingCards";
 import "./Landing.css";
 
 class LandingPage extends Component {
@@ -6,7 +7,7 @@ class LandingPage extends Component {
     return (
       <div>
         <header>
-          <div class="overlay"></div>
+          <div className="overlay"></div>
           <video
             playsinline="playsinline"
             autoplay="autoplay"
@@ -18,29 +19,18 @@ class LandingPage extends Component {
               type="video/mp4"
             />
           </video>
-          <div class="container h-100">
-            <div class="d-flex h-100 text-center align-items-center">
-              <div class="w-100 text-white">
-                <h1 class="display-3">Patient Data Management System</h1>
-                <p class="lead mb-0">
+          <div className="container h-100">
+            <div className="d-flex h-100 text-center align-items-center">
+              <div className="w-100 text-white">
+                <h1 className="display-3">Patient Data Management System</h1>
+                <p className="lead mb-0">
                   The Computer-Based Patient Record System
                 </p>
               </div>
             </div>
           </div>
         </header>
-
-        <section class="my-5">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8 mx-auto">
-                <p>lorem ipsum</p>
-                <p>lorem ipsum</p>
-                <p>lorem ipsum</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <LandingCards />
       </div>
     );
   }

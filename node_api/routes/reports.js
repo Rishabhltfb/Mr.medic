@@ -70,7 +70,6 @@ router.patch("/image/:id", upload.single('reportImage'), (req, res, next) => {
     const updateOps = {
       reportImage: req.file.path
     };
-    console.log('1');
     Report.update({ _id: id }, { $set: updateOps })
       .exec()
       .then(result => {
@@ -89,5 +88,33 @@ router.patch("/image/:id", upload.single('reportImage'), (req, res, next) => {
         });
       });
   });
+
+router.patch("/update/:id", (req, res, next) => {
+  const id = req.params.id;
+  const updateOps = {
+      heading: req.body.heading,
+      disease: req.body.disease,
+      remarks: req.body.remarks,
+      suggestedMedicines: req.body.suggestedMedicines
+  };
+  Report.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "details updated",
+        updatedReport: this.report,
+        request: {
+          type: "GET",
+          url: "http://localhost:5000/api/reports/report/" + id
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 module.exports = router;

@@ -1,51 +1,87 @@
 import React, { Component } from "react";
+import classnames from "classnames";
 
 export default class PatientLogin extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const patientData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    console.log(patientData);
+  }
+
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+    console.log({ [event.target.name]: event.target.value });
+  }
+
   render() {
+    const { errors } = this.state;
     return (
-      <div>
-        <div class="col-md-9 col-lg-8 mx-auto">
-          <h3 class="login-heading mb-4" style={{ color: "white" }}>
+        <div className="col-md-9 col-lg-8 mx-auto">
+          <h3 className="login-heading mb-4" style={{ color: "white" }}>
             Welcome back!
           </h3>
-          <form>
-            <div class="form-label-group">
+          <form onSubmit={this.onSubmit}>
+            <div className="form-label-group">
               <input
                 type="email"
                 id="inputEmail"
-                class="form-control"
+                name="email"
+                className={classnames("form-control", {
+                  "is-invalid": errors.email
+                })}
                 placeholder="Email address"
+                value={this.state.email}
+                onChange={this.onChange}
                 required
-                autofocus
+                autoFocus
               />
               <label for="inputEmail">Email address</label>
+              {errors.email && (
+                <div className="is-invalid-feedback">{errors.email}</div>
+              )}
             </div>
 
-            <div class="form-label-group">
+            <div className="form-label-group">
               <input
                 type="password"
                 id="inputPassword"
-                class="form-control"
+                name="password"
+                className={classnames("form-control", {
+                  "is-invalid": errors.password
+                })}
                 placeholder="Password"
+                value={this.state.password}
+                onChange={this.onChange}
                 required
               />
               <label for="inputPassword">Password</label>
+              {errors.password && (
+                <div className="is-invalid-feedback">{errors.password}</div>
+              )}
             </div>
 
             <button
-              class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+              className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
               type="submit"
             >
               Sign in
             </button>
-            <div class="text-center">
-              <a class="small" href="#">
-                Forgot password?
-              </a>
-            </div>
           </form>
         </div>
-      </div>
     );
   }
 }
