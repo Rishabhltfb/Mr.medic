@@ -1,6 +1,17 @@
 # Mr.Medic
   Mr. Medic is a medical healthcare service that comes with **both web version and android/iOS version with REST API in node.js** is used to keep and track record of a patient's medical reports which can be used by doctors to get reference, and and register current report of patient online which will, then be linked to patient's medical record. This app runs on the node.js backend and uses MongoDB atlas service for storing data online. The application is deployed on heroku so it can be used by the links provided. To view abstract, [click here](/abstract.pdf).
   
+## Web App
+The web App/ web Portal is build using React which is deployed on heroku at https://pacific-chamber-91721.herokuapp.com/.
+The WebApp gives the facility to 
+- Search Doctors according to area location
+- Search Patient according to name
+- Login & Signup of Doctors
+- Login & Signup of Patients
+- Details of Doctors
+- Details of Patients 
+- QR Code implementation in patient profile which contails app the details of patient which can be opened on app.
+
 ## Flutter app
 You can download the fully functioned [APK](https://drive.google.com/open?id=1By_CKuRpz-8DsvFL3b3102nDxG0T3h-O), or you can setup the flutter app using the mentioned steps: 
 ### Getting Started
