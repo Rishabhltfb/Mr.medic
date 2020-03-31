@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:medic_flutter_app/screens/auth_screen.dart';
+import 'package:medic_flutter_app/screens/doctor_profile.dart';
+import 'package:medic_flutter_app/screens/find_doctor.dart';
 import 'package:medic_flutter_app/screens/patient_doctor.dart';
 import 'package:medic_flutter_app/screens/profile_screen.dart';
 import 'package:medic_flutter_app/screens/qr_generator.dart';
+import 'package:medic_flutter_app/screens/report_screen.dart';
 import 'package:medic_flutter_app/screens/scan_qr.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/rendering.dart';
@@ -26,11 +29,11 @@ class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   // bool _isAuthenticated = false;
 
-  // @override
-  // void initState() {
-  //   _model.login();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    _model.fetchDoctorsList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +51,12 @@ class _MyAppState extends State<MyApp> {
           '/auth': (BuildContext context) => AuthScreen(_model),
           '/home': (BuildContext context) => HomeScreen(_model),
           '/profile': (BuildContext context) => ProfileScreen(_model),
-          '/qr': (BuildContext context) => QrCode(),
-          '/qrscan': (BuildContext context) => QrScan(),
+          '/dprofile': (BuildContext context) => DocrtorProfileScreen(_model),
+          '/findDoctor': (BuildContext context) => FindDoctor(_model),
+          '/qr': (BuildContext context) => QrCode(_model),
+          '/qrscan': (BuildContext context) => QrScan(_model),
           '/error': (BuildContext context) => ErrorScreen(),
+          '/report': (BuildContext context) => ReportScreen(_model),
         },
       ),
     );

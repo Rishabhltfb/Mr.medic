@@ -135,8 +135,40 @@ class _AuthScreenState extends State<AuthScreen> {
       return;
     }
     _formKey.currentState.save();
-    widget.model.authenticate(_authMode);
-    Navigator.pushReplacementNamed(context, '/home');
+    if (_authMode == AuthMode.DoctorLogin ||
+        _authMode == AuthMode.PatientLogin) {
+      if (widget.model.isPatient) {
+        await widget.model
+            .patientLogin(_formData['email'], _formData['password']);
+        widget.model.authenticatedPatient != Null
+            ? Navigator.pushReplacementNamed(context, '/home')
+            : print('Login failed');
+      } else {
+        await widget.model
+            .doctorLogin(_formData['email'], _formData['password']);
+        widget.model.authenticatedDoctor != Null
+            ? Navigator.pushReplacementNamed(context, '/home')
+            : print('Login failed');
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Access Denied'),
+            content: Text('Please try login only!'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override

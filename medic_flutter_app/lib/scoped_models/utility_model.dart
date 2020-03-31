@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http_parser/http_parser.dart';
-import 'package:medic_flutter_app/models/auth.dart';
+import 'package:medic_flutter_app/models/patient.dart';
 import 'package:mime/mime.dart';
 import 'package:http/http.dart' as http;
 import './connected_scoped_model.dart';
@@ -57,6 +57,74 @@ class UtilityModel extends ConnectedModel {
     }
   }
 
+  Future<Null> fetchPatientProfile(String result, String doctorId) async {
+    isLoading = true;
+    notifyListeners();
+    print('Inside fetchPatientProfile : ' + isLoading.toString());
+
+    List<String> arr = result.split(',');
+    String userId = arr[0];
+    String token = arr[1];
+    return await http
+        .get(
+      '${uri}api/patients/patient/$userId',
+    )
+        .then<Null>((http.Response response) {
+      if (response.statusCode == 200) {
+        Map<String, dynamic> responseData = json.decode(response.body);
+        Patient patient = new Patient(
+          userId: responseData['_id'],
+          token: token,
+          avatar: responseData['avatar'],
+          email: responseData['email'],
+          name: responseData['name'],
+          // phone: responseData['phone'],
+          address: responseData['address'],
+          age: responseData['age'],
+          city: responseData['city'],
+          gender: responseData['gender'],
+          reports: responseData['reports'],
+        );
+        doctor_client = patient;
+        print('doctor_client name is :' + patient.name);
+        print(doctor_client);
+        createReport(doctorId, token);
+        isLoading = false;
+        notifyListeners();
+      }
+    }).catchError((error) {
+      // isLoading = false;
+      // notifyListeners();
+      print("Fetch Authenticated User Error: ${error.toString()}");
+      return;
+    });
+  }
+
+  Future<Null> createReport(String doctorId, String token) async {
+    isLoading = true;
+    notifyListeners();
+    print('Inside create report : ' + isLoading.toString());
+    Map<String, dynamic> req = {'doctorId': doctorId};
+    try {
+      http.Response response = await http.post('${uri}api/reports/report',
+          body: json.encode(req),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          });
+      if (response.statusCode == 200) {
+        print('Report Created successfully!');
+        isLoading = false;
+        notifyListeners();
+      }
+    } catch (error) {
+      print("Error in creating report:  " + error.toString());
+      isLoading = false;
+      notifyListeners();
+      return;
+    }
+  }
+
   String parseImage(String imageAddress) {
     String avatar;
     if (imageAddress.contains('\\')) {
@@ -66,10 +134,6 @@ class UtilityModel extends ConnectedModel {
       avatar = imageAddress;
     }
     return avatar;
-  }
-
-  void authenticate(AuthMode authMode) {
-    print(authMode);
   }
 
   void setImage(File image) {
@@ -96,5 +160,14 @@ class UtilityModel extends ConnectedModel {
   bool getisPatient() {
     print('Inside get isPatient: ');
     return isPatient;
+  }
+
+  void setReportIndex(int index) {
+    report_index = index;
+  }
+
+  int getReportIndex() {
+    print('Inside get report index: ');
+    return report_index;
   }
 }

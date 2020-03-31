@@ -16,16 +16,20 @@ router.post('/report', passport.authenticate('jwt', { session: false }), (req, r
         patient: req.user.id,
         name: req.user.name,
         avatar: req.user.avatar,
+        doctor: req.body.doctor
     });
-
-    newReport.save().then(report => res.json(report));
+    newReport.save().then(report => {
+      report.dateStr = (report.date).toString();
+      res.json(report)});
     Patient.findOne({ email: req.user.email }).then(patient => {
         if (!patient) {
             console.log('no patient found');
         }
-        patient.reports.unshift({ report: newReport.id });
+        patient.reports.unshift({ report: newReport.id, heading: newReport.heading, date: newReport.dateStr });
         patient.save();
     }).catch(err => console.log(err));
+    newReport.dateStr = (newReport.date).toString();
+    newReport.save();
 });
 
 router.get('/report/:id', (req, res) => {
@@ -39,6 +43,7 @@ router.get('/all', (req, res) => {
     Report.find().sort({ date: -1 })
         .then(reports => {
             const response = {
+                count: reports.length,
                 reports: reports
             };
             res.json({ response })
@@ -70,7 +75,6 @@ router.patch("/image/:id", upload.single('reportImage'), (req, res, next) => {
     const updateOps = {
       reportImage: req.file.path
     };
-    console.log('1');
     Report.update({ _id: id }, { $set: updateOps })
       .exec()
       .then(result => {
@@ -89,5 +93,34 @@ router.patch("/image/:id", upload.single('reportImage'), (req, res, next) => {
         });
       });
   });
+
+router.patch("/update/:id", (req, res, next) => {
+  const id = req.params.id;
+  const updateOps = {
+      heading: req.body.heading,
+      disease: req.body.disease,
+      remarks: req.body.remarks,
+      suggestedMedicines: req.body.suggestedMedicines,
+      patientNotes: req.body.patientNotes
+  };
+  Report.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: "details updated",
+        updatedReport: this.report,
+        request: {
+          type: "GET",
+          url: "http://localhost:5000/api/reports/report/" + id
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});
 
 module.exports = router;

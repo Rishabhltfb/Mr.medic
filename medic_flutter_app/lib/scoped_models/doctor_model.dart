@@ -2,23 +2,47 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:http/http.dart' as http;
-import '../models/user.dart';
+import '../models/doctor.dart';
 import './connected_scoped_model.dart';
 
 class DoctorModel extends ConnectedModel {
-  User authenticatedUser;
-  User get getAuthenticatedUser {
-    return authenticatedUser;
+  Doctor authenticatedDoctor;
+  Doctor get getAuthenticatedDoctor {
+    return authenticatedDoctor;
   }
 
-  Future<Null> getUsers() async {
-    isLoading = true;
-    notifyListeners();
-    print('Inside get : ' + isLoading.toString());
+  Future<Null> fetchDoctorsList() async {
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside fetch Doctors List: ' + isLoading.toString());
     try {
-      http.Response response = await http.get('${uri}api/users');
+      http.Response response = await http.get('${uri}api/doctors/all');
       if (response.statusCode == 200) {
-        print(response);
+        print('Successfully fetched doctor list');
+        final List<Doctor> fetchedDoctorList = [];
+        final Map<String, dynamic> doctorListData = json.decode(response.body);
+        if (doctorListData == null) {
+          // isLoading = false;
+          // notifyListeners();
+          return;
+        }
+        doctorListData['doctors'].forEach(
+          (dynamic responseData) {
+            Doctor doctor = new Doctor(
+              userId: responseData['_id'],
+              avatar: responseData['avatar'],
+              email: responseData['email'],
+              name: responseData['name'],
+              phone: responseData['phone'],
+              city: responseData['city'],
+              gender: responseData['gender'],
+              clinickAddress: responseData['clinickAddress'],
+              specialization: responseData['specialization'],
+            );
+            fetchedDoctorList.add(doctor);
+          },
+        );
+        alldoctorList = fetchedDoctorList;
       }
     } catch (error) {
       print("Error in login:  " + error.toString());
@@ -26,62 +50,101 @@ class DoctorModel extends ConnectedModel {
     }
   }
 
-  Future<Null> login() async {
+  Future<Null> fetchCityDoctorsList(String city) async {
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside fetch City Doctors List: ' + isLoading.toString());
+    try {
+      http.Response response = await http.get('${uri}api/doctors/city/$city');
+      if (response.statusCode == 200) {
+        print('Successfully fetched city doctor list');
+        final List<Doctor> fetchedDoctorList = [];
+        final Map<String, dynamic> citydoctorListData =
+            json.decode(response.body);
+        if (citydoctorListData == null) {
+          // isLoading = false;
+          // notifyListeners();
+          return;
+        }
+        print(citydoctorListData);
+        citydoctorListData['doctors'].forEach(
+          (dynamic responseData) {
+            Doctor doctor = new Doctor(
+              userId: responseData['_id'],
+              avatar: responseData['avatar'],
+              email: responseData['email'],
+              name: responseData['name'],
+              phone: responseData['phone'],
+              city: responseData['city'],
+              gender: responseData['gender'],
+              clinickAddress: responseData['clinickAddress'],
+              specialization: responseData['specialization'],
+            );
+            fetchedDoctorList.add(doctor);
+          },
+        );
+        citydoctorList = fetchedDoctorList;
+        print(alldoctorList);
+      }
+    } catch (error) {
+      print("Error in login:  " + error.toString());
+      return;
+    }
+  }
+
+  Future<Null> doctorLogin(String email, String password) async {
     isLoading = true;
     notifyListeners();
-    print('Inside login : ' + isLoading.toString());
-    Map<String, dynamic> req = {
-      'email': 'rishabh@email.com',
-      'password': '12345'
-    };
+    print('Inside Dlogin : ' + isLoading.toString());
+    Map<String, dynamic> req = {'email': email, 'password': password};
     try {
-      http.Response response = await http.post('${uri}api/users/login',
+      http.Response response = await http.post('${uri}api/doctors/login',
           body: json.encode(req),
           headers: {'Content-Type': 'application/json'});
       if (response.statusCode == 200) {
         final Map<String, dynamic> res = json.decode(response.body);
-        await setAuthenticatedUser(res['userId'], res['token']);
+        print('Dlogin res');
+        print(res);
+        await setAuthenticatedDoctor(res['doctorId'], res['token']);
         isLoading = false;
         notifyListeners();
       }
     } catch (error) {
-      print("Error in login:  " + error.toString());
+      print("Error in Dlogin:  " + error.toString());
       isLoading = false;
       notifyListeners();
       return;
     }
   }
 
-  Future<Null> setAuthenticatedUser(String userId, String token) async {
+  Future<Null> setAuthenticatedDoctor(String userId, String token) async {
     // isLoading = true;
     // notifyListeners();
-    print('Inside setAuthenticatedUser : ' + isLoading.toString());
+    print('Inside setAuthenticatedDoctor : ' + isLoading.toString());
     return await http
         .get(
-      '${uri}api/users/$userId',
+      '${uri}api/doctors/find/$userId',
     )
         .then<Null>((http.Response response) {
       if (response.statusCode == 200) {
-        Map<String, dynamic> responseData = json.decode(response.body)['user'];
-        User user = new User(
+        Map<String, dynamic> responseData = json.decode(response.body);
+        Doctor doctor = new Doctor(
             userId: responseData['_id'],
             token: token,
             avatar: responseData['avatar'],
-            bio: responseData['bio'],
-            coverPic: responseData['coverPic'],
-            dateOfBirth: responseData['dateOfJoining'],
-            dateOfJoining: responseData['dateOfJoining'],
             email: responseData['email'],
-            followers: responseData['followers'],
-            followings: responseData['followings'],
-            location: '',
             name: responseData['name'],
-            phone: '',
-            username: responseData['username']);
-        authenticatedUser = user;
+            phone: responseData['phone'],
+            city: responseData['city'],
+            gender: responseData['gender'],
+            clinickAddress: responseData['clinickAddress'],
+            specialization: responseData['specialization']);
+        authenticatedDoctor = doctor;
+        print(doctor.name);
         // isLoading = false;
         // notifyListeners();
       }
+      print(response.statusCode);
     }).catchError((error) {
       // isLoading = false;
       // notifyListeners();

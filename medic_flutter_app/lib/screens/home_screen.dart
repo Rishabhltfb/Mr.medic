@@ -60,40 +60,65 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/profile');
+                      widget.model.isPatient
+                          ? Navigator.pushNamed(context, '/profile')
+                          : Navigator.pushNamed(context, '/dprofile');
                     },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      // color: Colors.white,
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
-                          )
+                          Text('Profile')
                         ],
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/error');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
-                          )
+                          Text('Covid 19')
                         ],
                       ),
                     ),
@@ -105,39 +130,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/findDoctor');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
-                          )
+                          Text('Find Doctor')
                         ],
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/error');
+                    },
                     child: Container(
+                      height: getDeviceHeight(context) * 0.18,
+                      width: getDeviceWidth(context) * 0.4,
                       padding: EdgeInsets.all(30),
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.blueGrey,
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
-                          )
+                          Text('Emergency')
                         ],
                       ),
                     ),
@@ -162,7 +211,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ? AppBar(
                   backgroundColor: Colors.white,
                   leading: GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, '/profile'),
+                    onTap: () {
+                      widget.model.isPatient
+                          ? Navigator.pushNamed(context, '/profile')
+                          : Navigator.pushNamed(context, '/dprofile');
+                    },
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 10),
@@ -170,11 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? CircularProgressIndicator()
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
-                                child: FadeInImage.assetNetwork(
-                                  height: getDeviceWidth(context) * 0.085,
-                                  fadeInCurve: Curves.easeIn,
-                                  placeholder: 'assets/patient.png',
-                                  image: '',
+                                child: Image.asset(
+                                  widget.model.isPatient
+                                      ? 'assets/patient.png'
+                                      : 'assets/doctor.png',
+                                  height: getDeviceWidth(context) * 0.081,
                                 ),
                               ),
                       ],
@@ -200,10 +253,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                   title: GestureDetector(
                     onTap: () {
-                      // _scrollBottomBarController.animateTo(
-                      //   0.0,
-                      //   curve: Curves.easeOut,
-                      //   duration: const Duration(milliseconds: 300),
                       // );
                     },
                     child: Image.asset(
@@ -218,50 +267,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(),
                   preferredSize: Size(0.0, 0.0),
                 ),
-          bottomNavigationBar: Container(
-            height: getDeviceHeight(context) * 0.09,
-            width: MediaQuery.of(context).size.width,
-            child: BottomNavigationBar(
-              onTap: (index) {
-                setState(() {
-                  bottom_navbar_index = index;
-                });
-              },
-              unselectedItemColor: Colors.blueGrey,
-              selectedItemColor: Theme.of(context).primaryColor,
-              iconSize: getDeviceHeight(context) * 0.04,
-              currentIndex:
-                  bottom_navbar_index, // this will be set when a new tab is tapped
-              items: [
-                BottomNavigationBarItem(
-                  icon: new Icon(Icons.home),
-                  title: new Text('', style: TextStyle(fontSize: 0)),
-                ),
-                BottomNavigationBarItem(
-                  icon: new Icon(
-                    Icons.search,
-                  ),
-                  title: new Text('', style: TextStyle(fontSize: 0)),
-                ),
-                BottomNavigationBarItem(
-                  icon: new Icon(
-                    Icons.notifications_none,
-                  ),
-                  title: new Text('', style: TextStyle(fontSize: 0)),
-                ),
-                BottomNavigationBarItem(
-                  icon: new Icon(
-                    Icons.mail,
-                    size: getViewportHeight(context) * 0.035,
-                  ),
-                  title: new Text(
-                    '',
-                    style: TextStyle(fontSize: 0),
-                  ),
-                ),
-              ],
-            ),
-          ),
           body: model.isLoading
               ? Center(
                   child: CircularProgressIndicator(),
