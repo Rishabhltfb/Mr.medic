@@ -34,6 +34,15 @@ export default class PatientSignup extends Component {
     };
     
     console.log(newPatientUser);
+    console.log(newPatientUser);
+    const url = "https://evening-dusk-90900.herokuapp.com/api/patient/register";
+    axios
+      .post(url, { newPatientUser })
+      .then(response => {
+        console.log(response.data);
+        window.location = "/discoverPatient";
+      })
+      .catch(err => console.log(err));
   }
 
   onChange(event) {

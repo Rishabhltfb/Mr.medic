@@ -4,7 +4,7 @@ const Card = ({ name, email, id, city, clinickAddress, specialization, avatar })
   return (
     <div className="col-lg-4">
       <div className="card mr-4 mb-5 mt-5 mb-lg-0" style={{ width: "18rem" }}>
-        <img className="card-img-top" src={`https://source.unsplash.com/user/${name}`} alt="Card image cap" />
+        <img className="card-img-top" src={`https://source.unsplash.com/user/${name}`} alt="profile"/>
         <div className="card-body mx-auto text-primary">
           <strong><h4 className="card-title mx-auto">{name}</h4></strong>
         </div>
