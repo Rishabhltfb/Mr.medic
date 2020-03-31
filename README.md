@@ -1,8 +1,8 @@
 # Mr.Medic
-  Mr. Medic is a web/app based application which is used to keep and track record of a patient's medical reports which can be used by doctors to get reference, and and register current report of patient online which will, then be linked to patient's medical record. This app runs on the node.js backend and uses MongoDB atlas service for storing data online. The application is deployed on heroku so it can be used by the links provided.
+  Mr. Medic is a medical healthcare service that comes with **both web version and android/iOS version with REST API in node.js** is used to keep and track record of a patient's medical reports which can be used by doctors to get reference, and and register current report of patient online which will, then be linked to patient's medical record. This app runs on the node.js backend and uses MongoDB atlas service for storing data online. The application is deployed on heroku so it can be used by the links provided.
 
 ## Node API
-This application is based on REST API build in node.js. To set up the node API move to the node_api directory and run the following command in terminal/command prompt:
+This application is based on REST API build in node.js. API is deployed on heroku at https://evening-dusk-90900.herokuapp.com . To set up the node API move to the node_api directory and run the following command in terminal/command prompt:
 ```
 npm install
 ```
@@ -13,7 +13,7 @@ npm start
 *The server will run on port 5000.*  
 Alternatively API can also be fetched directly from heroku and using the respective routes. Link for route to test the [Root Path](https://evening-dusk-90900.herokuapp.com).  
 
-### Routes
+### API Routes
 
 ### Patient
 **localhost:5000/api/patients/test**        
