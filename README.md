@@ -29,6 +29,23 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+### How it works
+* Home screen gives the option to select if you want to login as patient or doctor.
+  ![](/screenshots/Screenshot_2020-03-31-23-05-00-48_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+  
+* after seleting patient you will see a screen to select what you want to do. Patiens will also be able to view a list of their medical reports.
+![](/screenshots/Screenshot_2020-03-31-23-05-52-39_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+
+* From profile patient would be able to navigate through their reports by clicking on them and they would be able to update their report if they want.
+![](/screenshots/Screenshot_2020-03-31-23-06-03-45_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+
+* Patient can also find the list of doctors avialable nearby them.
+
+* If user is logged-in as doctor, he would be able to scan the qr code of patient which is unique for every patient to view patient's medical history. Screenshots for qr code generation and formation have been attached below.
+![](/screenshots/Screenshot_2020-03-31-23-06-40-46_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+![](/screenshots/Screenshot_2020-03-31-23-09-14-21_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+
+* After scanning a new report (current report) will also be generated for patient's latest visit to doctor.
 
 ## Node API
 This application is based on REST API build in node.js. API is deployed on heroku at https://evening-dusk-90900.herokuapp.com . To set up the node API move to the node_api directory and run the following command in terminal/command prompt:
