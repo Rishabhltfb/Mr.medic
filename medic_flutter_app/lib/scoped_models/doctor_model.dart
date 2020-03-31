@@ -11,20 +11,85 @@ class DoctorModel extends ConnectedModel {
     return authenticatedDoctor;
   }
 
-  // Future<Null> getDoctor() async {
-  //   isLoading = true;
-  //   notifyListeners();
-  //   print('Inside get Doctor: ' + isLoading.toString());
-  //   try {
-  //     http.Response response = await http.get('${uri}api/users');
-  //     if (response.statusCode == 200) {
-  //       print(response);
-  //     }
-  //   } catch (error) {
-  //     print("Error in login:  " + error.toString());
-  //     return;
-  //   }
-  // }
+  Future<Null> fetchDoctorsList() async {
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside fetch Doctors List: ' + isLoading.toString());
+    try {
+      http.Response response = await http.get('${uri}api/doctors/all');
+      if (response.statusCode == 200) {
+        print('Successfully fetched doctor list');
+        final List<Doctor> fetchedDoctorList = [];
+        final Map<String, dynamic> doctorListData = json.decode(response.body);
+        if (doctorListData == null) {
+          // isLoading = false;
+          // notifyListeners();
+          return;
+        }
+        doctorListData['doctors'].forEach(
+          (dynamic responseData) {
+            Doctor doctor = new Doctor(
+              userId: responseData['_id'],
+              avatar: responseData['avatar'],
+              email: responseData['email'],
+              name: responseData['name'],
+              phone: responseData['phone'],
+              city: responseData['city'],
+              gender: responseData['gender'],
+              clinickAddress: responseData['clinickAddress'],
+              specialization: responseData['specialization'],
+            );
+            fetchedDoctorList.add(doctor);
+          },
+        );
+        alldoctorList = fetchedDoctorList;
+      }
+    } catch (error) {
+      print("Error in login:  " + error.toString());
+      return;
+    }
+  }
+
+  Future<Null> fetchCityDoctorsList(String city) async {
+    // isLoading = true;
+    // notifyListeners();
+    print('Inside fetch City Doctors List: ' + isLoading.toString());
+    try {
+      http.Response response = await http.get('${uri}api/doctors/find/$city');
+      if (response.statusCode == 200) {
+        print('Successfully fetched doctor list');
+        final List<Doctor> fetchedDoctorList = [];
+        final Map<String, dynamic> doctorListData = json.decode(response.body);
+        if (doctorListData == null) {
+          // isLoading = false;
+          // notifyListeners();
+          return;
+        }
+        print(doctorListData);
+        doctorListData['doctors'].forEach(
+          (dynamic responseData) {
+            Doctor doctor = new Doctor(
+              userId: responseData['_id'],
+              avatar: responseData['avatar'],
+              email: responseData['email'],
+              name: responseData['name'],
+              phone: responseData['phone'],
+              city: responseData['city'],
+              gender: responseData['gender'],
+              clinickAddress: responseData['clinickAddress'],
+              specialization: responseData['specialization'],
+            );
+            fetchedDoctorList.add(doctor);
+          },
+        );
+        alldoctorList = fetchedDoctorList;
+        print(alldoctorList);
+      }
+    } catch (error) {
+      print("Error in login:  " + error.toString());
+      return;
+    }
+  }
 
   Future<Null> doctorLogin(String email, String password) async {
     isLoading = true;

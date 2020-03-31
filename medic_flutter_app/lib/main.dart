@@ -28,11 +28,11 @@ class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
   // bool _isAuthenticated = false;
 
-  // @override
-  // void initState() {
-  //   _model.login();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    _model.fetchDoctorsList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -67,15 +67,15 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
               child: Text(
                   "Over 8+ years of experience in ${doctor.specialization} and 5+ years of internship in USA"),
             ),
-            _buildTitle("Other Details"),
+            _buildTitle("Skills"),
             SizedBox(height: 10.0),
-            _buildSkillRow("Wordpress", 0.75),
+            _buildSkillRow("Emotional Intelligence", 0.75),
             SizedBox(height: 5.0),
-            _buildSkillRow("Laravel", 0.6),
+            _buildSkillRow("Flexbility", 0.6),
             SizedBox(height: 5.0),
-            _buildSkillRow("React JS", 0.65),
+            _buildSkillRow("Analytical", 0.65),
             SizedBox(height: 5.0),
-            _buildSkillRow("Flutter", 0.5),
+            _buildSkillRow("Interpersonal", 0.5),
             SizedBox(height: 30.0),
             _buildTitle("Experience"),
             _buildExperienceRow(
@@ -208,14 +208,19 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
 
   Row _buildSkillRow(String skill, double level) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(width: 16.0),
         Expanded(
-          flex: 2,
-          child: Text(
-            skill.toUpperCase(),
-            textAlign: TextAlign.right,
+            flex: 2,
+            child: Text(
+              skill.toUpperCase(),
+              textAlign: TextAlign.right,
+            )),
+        SizedBox(width: 10.0),
+        Expanded(
+          flex: 5,
+          child: LinearProgressIndicator(
+            value: level,
           ),
         ),
         SizedBox(width: 16.0),

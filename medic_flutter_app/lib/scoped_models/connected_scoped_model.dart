@@ -7,7 +7,7 @@ import 'package:scoped_model/scoped_model.dart';
 // import '../models/tweet.dart';
 
 class ConnectedModel extends Model {
-  // List<Tweet> feedList = [];
+  List<Doctor> alldoctorList = [];
   final uri = ApiKeys.uri;
   bool isLoading = false;
   bool isPatient = true;
