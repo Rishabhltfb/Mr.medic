@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medic_flutter_app/helpers/dimensions.dart';
 import 'package:medic_flutter_app/scoped_models/main_scoped_model.dart';
 import 'package:medic_flutter_app/widgets/report_format.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:progressive_image/progressive_image.dart';
 
 import '../helpers/dimensions.dart';
 import '../scoped_models/main_scoped_model.dart';

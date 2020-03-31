@@ -82,13 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Find Doctor'),
-                          )
+                          Text('Find Doctor')
                         ],
                       ),
                     ),
@@ -116,13 +113,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Covid 19'),
-                          )
+                          Text('Covid 19')
                         ],
                       ),
                     ),
@@ -156,13 +150,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Medicines'),
-                          )
+                          Text('Medicines')
                         ],
                       ),
                     ),
@@ -190,13 +181,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(Icons.ac_unit),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('Emergency'),
-                          )
+                          Text('Emergency')
                         ],
                       ),
                     ),

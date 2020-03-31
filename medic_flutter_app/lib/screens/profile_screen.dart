@@ -57,10 +57,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (index == 2) return _buildCollectionsRow();
     if (index == 3)
       return Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
-          child: Text("Medical History",
-              style: Theme.of(context).textTheme.title));
+        color: Colors.white,
+        padding: EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
+        child:
+            Text("Medical History", style: Theme.of(context).textTheme.title),
+      );
     return _buildListItem(index);
   }
 
@@ -81,8 +82,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
         ),
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -131,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: 150.0,
             height: 200.0,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Expanded(
                   child: ClipRRect(
@@ -228,11 +229,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              "1",
+                              "3",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            subtitle: Text("Patient".toUpperCase(),
+                            subtitle: Text("Reports".toUpperCase(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 12.0)),
                           ),
