@@ -15,7 +15,8 @@ router.post('/report', passport.authenticate('jwt', { session: false }), (req, r
     const newReport = new Report({
         patient: req.user.id,
         name: req.user.name,
-        avatar: req.user.avatar
+        avatar: req.user.avatar,
+        doctor: req.body.doctor
     });
     newReport.save().then(report => {
       report.dateStr = (report.date).toString();
