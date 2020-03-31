@@ -23,7 +23,10 @@ export default class DoctorLogin extends Component {
     console.log(doctorData);
     const url="https://evening-dusk-90900.herokuapp.com/api/doctors/login"
     axios.post(url, doctorData)
-    .then(response => console.log(response.data))
+    .then(response => {
+      console.log(response.data)
+      window.location = "/discoverPatient";
+    })
     .catch(err => console.log(err))
 
 

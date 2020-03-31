@@ -1,10 +1,14 @@
 import React from "react";
+import QRCode from 'qrcode.react'
+// var QRCode = require('qrcode.react');
+ 
 
-const PatientCard = ({ name, email, id, city, address, avatar }) => {
+const PatientCard = ({ name, email, id, city, address, avatar}) => {
   return (
-    <div className="card mb-5 mt-5">
+    <div className="card mb-5 mt-5 row">
+    <div className="ml-5 mt-5 mx-auto"><QRCode value={id} /></div>
       <div className="mx-auto mt-4">
-        <h5 className="card-title">{name}</h5>
+        <h5 className="card-title mt-5 mx-auto">{name}</h5>
       </div>
       <div className="card-body">
         <ul className="list-group list-group-flush">
