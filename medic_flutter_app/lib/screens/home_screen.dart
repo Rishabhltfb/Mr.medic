@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/error');
+                      Navigator.pushNamed(context, '/findDoctor');
                     },
                     child: Container(
                       height: getDeviceHeight(context) * 0.18,

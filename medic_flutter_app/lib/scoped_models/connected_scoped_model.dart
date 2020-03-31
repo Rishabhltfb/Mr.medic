@@ -8,6 +8,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 class ConnectedModel extends Model {
   List<Doctor> alldoctorList = [];
+  List<Doctor> citydoctorList = [];
   final uri = ApiKeys.uri;
   bool isLoading = false;
   bool isPatient = true;

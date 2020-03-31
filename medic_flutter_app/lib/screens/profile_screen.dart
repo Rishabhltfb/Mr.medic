@@ -138,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: widget.model.alldoctorList.length,
+        itemCount: widget.model.citydoctorList.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
             margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
@@ -157,13 +157,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 5.0,
                 ),
                 Text(
-                  widget.model.alldoctorList[index].name,
+                  widget.model.citydoctorList[index].name,
                   style: Theme.of(context).textTheme.subhead.merge(
                         TextStyle(color: Colors.grey.shade600),
                       ),
                 ),
                 Text(
-                  widget.model.alldoctorList[index].specialization,
+                  widget.model.citydoctorList[index].specialization,
                   style: Theme.of(context).textTheme.subhead.merge(
                         TextStyle(
                             color: Colors.blueGrey.shade600, fontSize: 12),
