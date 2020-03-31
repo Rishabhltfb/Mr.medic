@@ -25,9 +25,9 @@ class Login extends Component {
     const user = this.state.user;
     let comp;
 
-    if (user == "patient") {
+    if (user === "patient") {
       comp = <PatientLogin />;
-    } else if (user == "doctor") {
+    } else if (user === "doctor") {
       comp = <DoctorLogin />;
     } else {
       comp = (
