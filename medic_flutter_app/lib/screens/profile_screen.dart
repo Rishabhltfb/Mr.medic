@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListView.builder(
-              itemCount: 7,
+              itemCount: 4 + patient.reports.length,
               itemBuilder: _mainListBuilder,
             ),
             Padding(
@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child:
             Text("Medical History", style: Theme.of(context).textTheme.title),
       );
-    return _buildListItem(index);
+    return _buildListItem(index - 4);
   }
 
   Widget _buildListItem(int index) {

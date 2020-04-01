@@ -16,23 +16,6 @@ class _FindDoctorState extends State<FindDoctor> {
   String city = null;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final List<Map> schoolLists = [
-    {
-      "name": "Edgewick Scchol",
-      "location": "572 Statan NY, 12483",
-      "type": "Higher Secondary School",
-      "logoText":
-          "https://cdn.pixabay.com/photo/2017/03/16/21/18/logo-2150297_960_720.png"
-    },
-    {
-      "name": "Xaviers International",
-      "location": "234 Road Kathmandu, Nepal",
-      "type": "Higher Secondary School",
-      "logoText":
-          "https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924_960_720.png"
-    },
-  ];
-
   void _submitForm() {
     _formKey.currentState.save();
     widget.model.fetchCityDoctorsList(city);
@@ -76,11 +59,25 @@ class _FindDoctorState extends State<FindDoctor> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                      ),
                       Text(
                         "Find Doctor",
                         style: TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        ),
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ],
                   ),

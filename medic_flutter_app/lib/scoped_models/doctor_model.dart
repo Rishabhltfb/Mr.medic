@@ -12,8 +12,8 @@ class DoctorModel extends ConnectedModel {
   }
 
   Future<Null> fetchDoctorsList() async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside fetch Doctors List: ');
     try {
       http.Response response = await http.get('${uri}api/doctors/all');
@@ -22,8 +22,8 @@ class DoctorModel extends ConnectedModel {
         final List<Doctor> fetchedDoctorList = [];
         final Map<String, dynamic> doctorListData = json.decode(response.body);
         if (doctorListData == null) {
-          // isLoading = false;
-          // notifyListeners();
+          isLoading = false;
+          notifyListeners();
           return;
         }
         doctorListData['doctors'].forEach(
@@ -44,15 +44,20 @@ class DoctorModel extends ConnectedModel {
         );
         alldoctorList = fetchedDoctorList;
       }
+
+      isLoading = false;
+      notifyListeners();
     } catch (error) {
       print("Error in login:  " + error.toString());
+      isLoading = false;
+      notifyListeners();
       return;
     }
   }
 
   Future<Null> fetchCityDoctorsList(String city) async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside fetch City Doctors List: ');
     try {
       http.Response response = await http.get('${uri}api/doctors/city/$city');
@@ -62,11 +67,10 @@ class DoctorModel extends ConnectedModel {
         final Map<String, dynamic> citydoctorListData =
             json.decode(response.body);
         if (citydoctorListData == null) {
-          // isLoading = false;
-          // notifyListeners();
+          isLoading = false;
+          notifyListeners();
           return;
         }
-        print(citydoctorListData);
         citydoctorListData['doctors'].forEach(
           (dynamic responseData) {
             Doctor doctor = new Doctor(
@@ -84,17 +88,20 @@ class DoctorModel extends ConnectedModel {
           },
         );
         citydoctorList = fetchedDoctorList;
-        print(alldoctorList);
       }
+      isLoading = false;
+      notifyListeners();
     } catch (error) {
       print("Error in login:  " + error.toString());
+      isLoading = false;
+      notifyListeners();
       return;
     }
   }
 
   Future<Null> doctorLogin(String email, String password) async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside Dlogin : ');
     Map<String, dynamic> req = {'email': email, 'password': password};
     try {
@@ -104,20 +111,23 @@ class DoctorModel extends ConnectedModel {
       if (response.statusCode == 200) {
         final Map<String, dynamic> res = json.decode(response.body);
         print('Dlogin res');
-        print(res);
         await setAuthenticatedDoctor(res['doctorId'], res['token']);
         notifyListeners();
       }
+
+      isLoading = false;
+      notifyListeners();
     } catch (error) {
       print("Error in Dlogin:  " + error.toString());
+      isLoading = false;
       notifyListeners();
       return;
     }
   }
 
   Future<Null> setAuthenticatedDoctor(String userId, String token) async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside setAuthenticatedDoctor : ');
     return await http
         .get(
@@ -138,14 +148,12 @@ class DoctorModel extends ConnectedModel {
             clinickAddress: responseData['clinickAddress'],
             specialization: responseData['specialization']);
         authenticatedDoctor = doctor;
-        print(doctor.name);
-        // isLoading = false;
-        // notifyListeners();
+        isLoading = false;
+        notifyListeners();
       }
-      print(response.statusCode);
     }).catchError((error) {
-      // isLoading = false;
-      // notifyListeners();
+      isLoading = false;
+      notifyListeners();
       print("Fetch Authenticated User Error: ${error.toString()}");
       return;
     });

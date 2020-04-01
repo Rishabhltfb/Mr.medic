@@ -6,7 +6,7 @@ import '../models/patient.dart';
 import './connected_scoped_model.dart';
 
 class PatientModel extends ConnectedModel {
-  Patient authenticatedPatient;
+  Patient authenticatedPatient = null;
   Patient get getAuthenticatedPatient {
     print(authenticatedPatient);
     return authenticatedPatient;
@@ -28,8 +28,8 @@ class PatientModel extends ConnectedModel {
   // }
 
   Future<Null> patientLogin(String email, String password) async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside Plogin : ');
     Map<String, dynamic> req = {'email': email, 'password': password};
     try {
@@ -37,23 +37,23 @@ class PatientModel extends ConnectedModel {
           body: json.encode(req),
           headers: {'Content-Type': 'application/json'});
       if (response.statusCode == 200) {
+        print('Inside plogin success');
         final Map<String, dynamic> res = json.decode(response.body);
         await setAuthenticatedPatient(res['patientId'], res['token']);
-        print(res['patientId']);
-        // isLoading = false;
-        // notifyListeners();
       }
+      isLoading = false;
+      notifyListeners();
     } catch (error) {
       print("Error in Plogin:  " + error.toString());
-      // isLoading = false;
-      // notifyListeners();
+      isLoading = false;
+      notifyListeners();
       return;
     }
   }
 
   Future<Null> setAuthenticatedPatient(String userId, String token) async {
-    // isLoading = true;
-    // notifyListeners();
+    isLoading = true;
+    notifyListeners();
     print('Inside setAuthenticatedPatient : ');
     return await http
         .get(
@@ -76,14 +76,12 @@ class PatientModel extends ConnectedModel {
           reports: responseData['reports'],
         );
         authenticatedPatient = patient;
-        print(patient);
-        print(authenticatedPatient);
-        // isLoading = false;
-        // notifyListeners();
+        isLoading = false;
+        notifyListeners();
       }
     }).catchError((error) {
-      // isLoading = false;
-      // notifyListeners();
+      isLoading = false;
+      notifyListeners();
       print("Fetch Authenticated User Error: ${error.toString()}");
       return;
     });

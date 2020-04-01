@@ -105,15 +105,17 @@ class _AuthScreenState extends State<AuthScreen> {
                 return Container(
                   height: getViewportHeight(context) * 0.03,
                   alignment: Alignment.center,
-                  child: Text(
-                    _authMode == AuthMode.PatientLogin ||
-                            _authMode == AuthMode.DoctorLogin
-                        ? "Login"
-                        : "Signup",
-                    style: TextStyle(
-                        fontFamily: "Ubuntu",
-                        fontSize: getViewportHeight(context) * 0.02),
-                  ),
+                  child: widget.model.isLoading
+                      ? CircularProgressIndicator()
+                      : Text(
+                          _authMode == AuthMode.PatientLogin ||
+                                  _authMode == AuthMode.DoctorLogin
+                              ? "Login"
+                              : "Signup",
+                          style: TextStyle(
+                              fontFamily: "Ubuntu",
+                              fontSize: getViewportHeight(context) * 0.02),
+                        ),
                 );
               },
             ),
@@ -136,9 +138,26 @@ class _AuthScreenState extends State<AuthScreen> {
       if (widget.model.isPatient) {
         await widget.model
             .patientLogin(_formData['email'], _formData['password']);
-        widget.model.authenticatedPatient != Null
+
+        widget.model.getAuthenticatedPatient != null
             ? Navigator.pushReplacementNamed(context, '/home')
-            : print('Login failed');
+            : showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Login Failed'),
+                    content: Text('Please login with correct credentials'),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('OK'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                },
+              );
       } else {
         await widget.model
             .doctorLogin(_formData['email'], _formData['password']);
