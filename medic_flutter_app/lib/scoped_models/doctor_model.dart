@@ -125,6 +125,15 @@ class DoctorModel extends ConnectedModel {
     }
   }
 
+  void loadDoctorProfile(Doctor doctor) {
+    if (isPatient) {
+      view_doctor = doctor;
+    } else {
+      doctor_viewer = doctor;
+    }
+    print(doctor.email);
+  }
+
   Future<Null> setAuthenticatedDoctor(String userId, String token) async {
     isLoading = true;
     notifyListeners();

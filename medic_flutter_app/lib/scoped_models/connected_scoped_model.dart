@@ -15,5 +15,6 @@ class ConnectedModel extends Model {
   File file = null;
   int report_index = null;
   Patient doctor_client = null;
+  Doctor doctor_viewer = null;
   Doctor view_doctor = null;
 }

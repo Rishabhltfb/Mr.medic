@@ -17,7 +17,6 @@ class _QrCodeState extends State<QrCode> {
   void initState() {
     data =
         '${widget.model.getAuthenticatedPatient.userId},${widget.model.getAuthenticatedPatient.token}';
-    print(data);
     super.initState();
   }
 

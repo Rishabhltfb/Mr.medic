@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medic_flutter_app/models/doctor.dart';
 import 'package:medic_flutter_app/scoped_models/main_scoped_model.dart';
-
-import 'dart:async';
 
 class FindDoctor extends StatefulWidget {
   final MainModel model;
@@ -16,14 +15,15 @@ class _FindDoctorState extends State<FindDoctor> {
   String city = null;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _submitForm() {
+  void _submitForm() async {
     _formKey.currentState.save();
-    widget.model.fetchCityDoctorsList(city);
+    await widget.model.fetchCityDoctorsList(city);
+
     setState(() {
-      Timer(Duration(seconds: 3), () {
-        print('done');
-      });
+      print('done');
     });
+    // Timer(Duration(seconds: 3), () {
+    // });
   }
 
   @override
@@ -40,13 +40,17 @@ class _FindDoctorState extends State<FindDoctor> {
                 padding: EdgeInsets.only(top: 145),
                 height: MediaQuery.of(context).size.height,
                 width: double.infinity,
-                child: ListView.builder(
-                    itemCount: city != null
-                        ? widget.model.citydoctorList.length
-                        : widget.model.alldoctorList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+                child: widget.model.isLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        itemCount: city != null
+                            ? widget.model.citydoctorList.length
+                            : widget.model.alldoctorList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return buildList(context, index);
+                        }),
               ),
               Container(
                 height: 140,
@@ -74,10 +78,14 @@ class _FindDoctorState extends State<FindDoctor> {
                       ),
                       IconButton(
                         icon: Icon(
-                          Icons.arrow_back,
+                          Icons.restore,
                           color: Colors.white,
                         ),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          setState(() {
+                            city = null;
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -139,93 +147,94 @@ class _FindDoctorState extends State<FindDoctor> {
   }
 
   Widget buildList(BuildContext context, int index) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.white,
-      ),
-      width: double.infinity,
-      height: 110,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 50,
-            height: 50,
-            margin: EdgeInsets.only(right: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border:
-                  Border.all(width: 3, color: Theme.of(context).accentColor),
-              image: DecorationImage(
-                  image: AssetImage('assets/doctor.png'), fit: BoxFit.fill),
+    Doctor doctor = city != null
+        ? widget.model.citydoctorList[index]
+        : widget.model.alldoctorList[index];
+    return GestureDetector(
+      onTap: () {
+        widget.model.loadDoctorProfile(doctor);
+        Navigator.pushNamed(context, '/dprofile');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: Colors.white,
+        ),
+        width: double.infinity,
+        height: 110,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: 50,
+              height: 50,
+              margin: EdgeInsets.only(right: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                border:
+                    Border.all(width: 3, color: Theme.of(context).accentColor),
+                image: DecorationImage(
+                    image: AssetImage('assets/doctor.png'), fit: BoxFit.fill),
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  city != null
-                      ? widget.model.citydoctorList[index].name
-                      : widget.model.alldoctorList[index].name,
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.location_on,
-                      color: Theme.of(context).accentColor,
-                      size: 20,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                        city != null
-                            ? widget.model.citydoctorList[index].clinickAddress
-                            : widget.model.alldoctorList[index].clinickAddress,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 13,
-                            letterSpacing: .3)),
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.school,
-                      color: Theme.of(context).accentColor,
-                      size: 20,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                        city != null
-                            ? widget.model.citydoctorList[index].specialization
-                            : widget.model.alldoctorList[index].specialization,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 13,
-                            letterSpacing: .3)),
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    doctor.name,
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.location_on,
+                        color: Theme.of(context).accentColor,
+                        size: 20,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(doctor.clinickAddress,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 13,
+                              letterSpacing: .3)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.school,
+                        color: Theme.of(context).accentColor,
+                        size: 20,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(doctor.specialization,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 13,
+                              letterSpacing: .3)),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -21,6 +21,8 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
     if (widget.model.isPatient) {
       print('inside profile patient');
       doctor = widget.model.view_doctor;
+    } else if (widget.model.doctor_viewer != null) {
+      doctor = widget.model.doctor_viewer;
     } else {
       print('inside doctor_client');
       doctor = widget.model.getAuthenticatedDoctor;
@@ -32,33 +34,23 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context)),
         title: Text(
           'Doctor Profile',
         ),
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 1,
         automaticallyImplyLeading: false,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.commentDots,
-              color: Colors.black54,
-            ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.more_vert,
-              color: Colors.black54,
-            ),
-            onPressed: () {},
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              height: 15,
+            ),
             _buildHeader(),
             Container(
               margin: const EdgeInsets.all(16.0),
@@ -134,7 +126,7 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  doctor.phone,
+                  '8374638273',
                   style: TextStyle(fontSize: 16.0),
                 ),
               ],
@@ -155,7 +147,7 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
           color: Colors.indigo,
           icon: Icon(FontAwesomeIcons.facebookF),
           onPressed: () {
-            _launchURL("https://facebook.com/lohanidamodar");
+            _launchURL("https://www.facebook.com/Rishabh.SharmaRJ");
           },
         ),
         SizedBox(width: 5.0),
@@ -163,15 +155,15 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
           color: Colors.indigo,
           icon: Icon(FontAwesomeIcons.github),
           onPressed: () {
-            _launchURL("https://github.com/lohanidamodar");
+            _launchURL("https://github.com/Rishabhltfb");
           },
         ),
         SizedBox(width: 5.0),
         IconButton(
-          color: Colors.red,
-          icon: Icon(FontAwesomeIcons.youtube),
+          color: Colors.indigo,
+          icon: Icon(FontAwesomeIcons.linkedin),
           onPressed: () {
-            _launchURL("https://youtube.com/c/reactbits");
+            _launchURL("https://www.linkedin.com/in/rishabh-sharma-11242b174/");
           },
         ),
         SizedBox(width: 10.0),

@@ -27,6 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       patient = widget.model.doctor_client;
       print(patient);
     }
+    widget.model.fetchCityDoctorsList(patient.city);
     super.initState();
   }
 
@@ -122,50 +123,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Container _buildCollectionsRow() {
-    return Container(
-      color: Colors.white,
-      height: 200.0,
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
-      child: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.model.citydoctorList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-            width: 150.0,
+    return widget.model.isLoading
+        ? Container(
+            color: Colors.white,
             height: 200.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Image.asset('assets/doctor.png'),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : Container(
+            color: Colors.white,
+            height: 200.0,
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.model.citydoctorList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                  width: 150.0,
+                  height: 200.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Image.asset('assets/doctor.png'),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        widget.model.citydoctorList[index].name,
+                        style: Theme.of(context).textTheme.subhead.merge(
+                              TextStyle(color: Colors.grey.shade600),
+                            ),
+                      ),
+                      Text(
+                        widget.model.citydoctorList[index].specialization,
+                        style: Theme.of(context).textTheme.subhead.merge(
+                              TextStyle(
+                                  color: Colors.blueGrey.shade600,
+                                  fontSize: 12),
+                            ),
+                      ),
+                    ],
                   ),
-                ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                Text(
-                  widget.model.citydoctorList[index].name,
-                  style: Theme.of(context).textTheme.subhead.merge(
-                        TextStyle(color: Colors.grey.shade600),
-                      ),
-                ),
-                Text(
-                  widget.model.citydoctorList[index].specialization,
-                  style: Theme.of(context).textTheme.subhead.merge(
-                        TextStyle(
-                            color: Colors.blueGrey.shade600, fontSize: 12),
-                      ),
-                ),
-              ],
+                );
+              },
             ),
           );
-        },
-      ),
-    );
   }
 
   Container _buildHeader(BuildContext context) {

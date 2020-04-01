@@ -161,9 +161,25 @@ class _AuthScreenState extends State<AuthScreen> {
       } else {
         await widget.model
             .doctorLogin(_formData['email'], _formData['password']);
-        widget.model.authenticatedDoctor != Null
+        widget.model.authenticatedDoctor != null
             ? Navigator.pushReplacementNamed(context, '/home')
-            : print('Login failed');
+            : showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Login Failed'),
+                    content: Text('Please login with correct credentials'),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('OK'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                },
+              );
       }
     } else {
       showDialog(
