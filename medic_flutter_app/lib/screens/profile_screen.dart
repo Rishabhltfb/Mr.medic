@@ -46,13 +46,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: 4 + patient.reports.length,
               itemBuilder: _mainListBuilder,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 40.0, left: 10),
               child: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  widget.model.doctor_client = null;
+                  Navigator.pop(context);
+                },
                 icon: Icon(
                   Icons.arrow_back,
                   color: Colors.black,
@@ -241,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              "3",
+                              patient.reports.length.toString(),
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),

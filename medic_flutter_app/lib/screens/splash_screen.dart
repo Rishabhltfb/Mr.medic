@@ -42,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
               SizedBox(height: getDeviceHeight(context) * 0.01),
               Text(
-                'Dr. medic',
+                'Mr. medic',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: getDeviceHeight(context) * 0.05),

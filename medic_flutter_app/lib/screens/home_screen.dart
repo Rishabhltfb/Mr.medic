@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:scoped_model/scoped_model.dart';
 // import 'dart:collection';
 
+import 'package:medic_flutter_app/helpers/my_flutter_app_icons.dart';
 import '../scoped_models/main_scoped_model.dart';
 import 'package:medic_flutter_app/helpers/dimensions.dart';
 import '../api/keys.dart';
@@ -23,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final uri = ApiKeys.uri;
 
   _HomeScreenState(this.model);
-  bool _showAppbar = true; //this is to show app bar
   int bottom_navbar_index = 0;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -86,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
                             child: Icon(
-                              Icons.person_pin,
-                              color: Theme.of(context).primaryColor,
+                              MyFlutterApp.user,
+                              color: Colors.black87,
                             ),
                           ),
                           Text('Profile')
@@ -119,8 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.ac_unit,
-                                color: Theme.of(context).primaryColor),
+                            child: Icon(
+                              MyFlutterApp.covid__2_,
+                              color: Colors.red,
+                              size: 30,
+                            ),
                           ),
                           Text('Covid 19')
                         ],
@@ -157,8 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.find_replace,
-                                color: Theme.of(context).primaryColor),
+                            child: Icon(MyFlutterApp.find_doctor__1_,
+                                size: 30, color: Colors.black87),
                           ),
                           Text('Find Doctor')
                         ],
@@ -189,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 5, bottom: 10),
-                            child: Icon(Icons.explicit,
-                                color: Theme.of(context).primaryColor),
+                            child: Icon(MyFlutterApp.emergency,
+                                size: 30, color: Colors.black87),
                           ),
                           Text('Emergency')
                         ],
@@ -213,64 +216,62 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           key: _scaffoldKey,
           // drawer: SideDrawer(),
-          appBar: _showAppbar
-              ? AppBar(
-                  backgroundColor: Colors.white,
-                  leading: GestureDetector(
-                    onTap: () {
-                      widget.model.isPatient
-                          ? Navigator.pushNamed(context, '/profile')
-                          : Navigator.pushNamed(context, '/dprofile');
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 10),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(
-                            widget.model.isPatient
-                                ? 'assets/patient.png'
-                                : 'assets/doctor.png',
-                            height: getDeviceWidth(context) * 0.081,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: model.isPatient
-                          ? Icon(
-                              Icons.photo_size_select_actual,
-                              color: Theme.of(context).primaryColor,
-                              size: getDeviceHeight(context) * 0.05,
-                            )
-                          : Icon(
-                              Icons.camera,
-                              color: Theme.of(context).primaryColor,
-                              size: getDeviceHeight(context) * 0.05,
-                            ),
-                      onPressed: () => model.isPatient
-                          ? Navigator.pushNamed(context, '/qr')
-                          : Navigator.pushNamed(context, '/qrscan'),
-                    ),
-                  ],
-                  title: GestureDetector(
-                    onTap: () {
-                      // );
-                    },
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            leading: GestureDetector(
+              onTap: () {
+                widget.model.isPatient
+                    ? Navigator.pushNamed(context, '/profile')
+                    : Navigator.pushNamed(context, '/dprofile');
+              },
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 10),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
                     child: Image.asset(
-                      'assets/app_icon.png',
-                      color: Theme.of(context).primaryColor,
-                      height: getDeviceHeight(context) * 0.06,
+                      widget.model.isPatient
+                          ? 'assets/patient.png'
+                          : 'assets/doctor.png',
+                      height: getDeviceWidth(context) * 0.081,
                     ),
                   ),
-                  centerTitle: true,
-                )
-              : PreferredSize(
-                  child: Container(),
-                  preferredSize: Size(0.0, 0.0),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: IconButton(
+                  icon: model.isPatient
+                      ? Icon(
+                          MyFlutterApp.qrcode,
+                          color: Colors.black87,
+                          size: getDeviceHeight(context) * 0.042,
+                        )
+                      : Icon(
+                          MyFlutterApp.qrscan__1_,
+                          color: Colors.black87,
+                          size: getDeviceHeight(context) * 0.05,
+                        ),
+                  onPressed: () => model.isPatient
+                      ? Navigator.pushNamed(context, '/qr')
+                      : Navigator.pushNamed(context, '/qrscan'),
                 ),
+              ),
+            ],
+            title: GestureDetector(
+              onTap: () {
+                // );
+              },
+              child: Image.asset(
+                'assets/app_icon.png',
+                color: Theme.of(context).primaryColor,
+                height: getDeviceHeight(context) * 0.06,
+              ),
+            ),
+            centerTitle: true,
+          ),
           body: body(),
         );
       },

@@ -45,6 +45,7 @@ class _FindDoctorState extends State<FindDoctor> {
                         child: CircularProgressIndicator(),
                       )
                     : ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         itemCount: city != null
                             ? widget.model.citydoctorList.length
                             : widget.model.alldoctorList.length,
@@ -157,6 +158,12 @@ class _FindDoctorState extends State<FindDoctor> {
       },
       child: Container(
         decoration: BoxDecoration(
+          boxShadow: [
+            new BoxShadow(
+              color: Colors.blueGrey,
+              blurRadius: 10.0,
+            ),
+          ],
           borderRadius: BorderRadius.circular(25),
           color: Colors.white,
         ),

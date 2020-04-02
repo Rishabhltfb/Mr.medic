@@ -36,7 +36,11 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context)),
+            onPressed: () {
+              widget.model.doctor_viewer = null;
+              widget.model.view_doctor = null;
+              Navigator.pop(context);
+            }),
         title: Text(
           'Doctor Profile',
         ),
@@ -126,7 +130,7 @@ class _DocrtorProfileScreenState extends State<DocrtorProfileScreen> {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  '8374638273',
+                  doctor.phone,
                   style: TextStyle(fontSize: 16.0),
                 ),
               ],
