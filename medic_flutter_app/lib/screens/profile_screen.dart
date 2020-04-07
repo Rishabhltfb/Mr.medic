@@ -144,37 +144,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.model.citydoctorList.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                  width: 150.0,
-                  height: 200.0,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Image.asset('assets/doctor.png'),
+                return GestureDetector(
+                  onTap: () {
+                    widget.model
+                        .loadDoctorProfile(widget.model.citydoctorList[index]);
+                    Navigator.pushNamed(context, '/dprofile');
+                  },
+                  child: Container(
+                    margin:
+                        EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                    width: 150.0,
+                    height: 200.0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image.asset('assets/doctor.png'),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        widget.model.citydoctorList[index].name,
-                        style: Theme.of(context).textTheme.subhead.merge(
-                              TextStyle(color: Colors.grey.shade600),
-                            ),
-                      ),
-                      Text(
-                        widget.model.citydoctorList[index].specialization,
-                        style: Theme.of(context).textTheme.subhead.merge(
-                              TextStyle(
-                                  color: Colors.blueGrey.shade600,
-                                  fontSize: 12),
-                            ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          widget.model.citydoctorList[index].name,
+                          style: Theme.of(context).textTheme.subhead.merge(
+                                TextStyle(color: Colors.grey.shade600),
+                              ),
+                        ),
+                        Text(
+                          widget.model.citydoctorList[index].specialization,
+                          style: Theme.of(context).textTheme.subhead.merge(
+                                TextStyle(
+                                    color: Colors.blueGrey.shade600,
+                                    fontSize: 12),
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
