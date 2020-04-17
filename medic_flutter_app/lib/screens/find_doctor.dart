@@ -83,6 +83,8 @@ class _FindDoctorState extends State<FindDoctor> {
                           color: Colors.white,
                         ),
                         onPressed: () {
+                          _formKey.currentState.reset();
+                          FocusScope.of(context).requestFocus(FocusNode());
                           setState(() {
                             city = null;
                           });
@@ -120,6 +122,7 @@ class _FindDoctorState extends State<FindDoctor> {
                                   ),
                                   onPressed: () {
                                     _submitForm();
+                                    _formKey.currentState.reset();
                                     FocusScope.of(context)
                                         .requestFocus(FocusNode());
                                   }),

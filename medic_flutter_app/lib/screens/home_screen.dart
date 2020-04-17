@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // model.fetchTweets();
     super.initState();
   }
 
