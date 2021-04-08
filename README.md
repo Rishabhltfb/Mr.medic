@@ -60,7 +60,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ### How it works
 * Home screen gives the option to select if you want to login as patient or doctor.
-  ![](/screenshots/Screenshot_2020-03-31-23-05-00-48_4c4ca68678991bf4c89a67acdf9c2b9d.png)
+  ![](/screenshots/Screenshot_2020-03-31-23-05-00-48_4c4ca68678991bf4c89a67acdf9c2b9d.png){:height="700px" width="400px"}
   
 * after seleting patient you will see a screen to select what you want to do. Patiens will also be able to view a list of their medical reports.
 ![](/screenshots/Screenshot_2020-03-31-23-05-52-39_4c4ca68678991bf4c89a67acdf9c2b9d.png)
